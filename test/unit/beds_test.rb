@@ -4,7 +4,7 @@ class BedsTest < ActiveSupport::TestCase
   test "given a bed in state A, suggest plants that fit" do
     bed = beds(:rechts_A)
     plants = bed.possible_plants
-    assert_equal(%w(Zwiebel Rüebli).sort, (plants.collect { |item| item.name }).sort)
+    assert_plants(%w(Zwiebel Rüebli), plants)
   end
 
   test "A bed has plants" do
