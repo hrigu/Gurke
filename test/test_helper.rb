@@ -11,6 +11,6 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def assert_plants(expected_names, plants)
-    assert_equal (expected_names.sort, (plants.collect { |item| item.name }).sort)
+    assert_equal(expected_names.sort, (plants.collect { |item| item.name }).sort)
   end
 end
