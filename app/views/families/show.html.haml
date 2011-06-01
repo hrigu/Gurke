@@ -1,19 +1,19 @@
 %p#notice= notice
 %div{ :id => "family.#{to_html_tag @family.name}"}
-    %p
-        %b Name:
-        = @family.name
-    %p
-        %b Energie:
-        = @family.energy
-    %p
-        %b Feld:
-        = @family.field_state
-    %p
-        %b Pflanzen:
-        - @family.plants.each do |plant|
-            = plant.name
-    = link_to 'Edit', edit_family_path(@family)
-    |
-    = link_to 'Back', families_path
+ %p
+  %b Name:
+  = @family.name
+ %p
+  %b Energie:
+  = @family.energy
+ %p
+  %b Feld:
+  = @family.field_state
+ %p
+  %b Pflanzen:
+  - @family.plants.each do |plant|
+   = plant.name
+ = link_to 'Edit', edit_family_path(@family)
+ |
+ = link_to 'Back', families_path
  
