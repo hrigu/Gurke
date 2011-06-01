@@ -50,6 +50,7 @@ GEM
       abstract (>= 1.0.0)
     gherkin (2.3.7)
       json (>= 1.4.6)
+    haml (3.1.1)
     heroku (2.1.4)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -127,6 +128,7 @@ DEPENDENCIES
   ci_reporter
   cucumber-rails
   database_cleaner
+  haml
   heroku
   rails (= 3.0.6)
   rspec-rails

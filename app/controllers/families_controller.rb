@@ -3,7 +3,6 @@ class FamiliesController < ApplicationController
   # GET /families.xml
   def index
     @families = Family.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @families }

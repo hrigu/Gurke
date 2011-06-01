@@ -9,6 +9,7 @@ gem 'sqlite3'
 
 gem 'ci_reporter'
 gem 'heroku'
+gem 'haml'
 # Use unicorn as the web server
 # gem 'unicorn'
 

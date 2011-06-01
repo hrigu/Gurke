@@ -5,18 +5,15 @@
 <% @beds.each do |bed| %>
 
   <div id="bed_box.<%= to_html_tag bed.name %>">
-  <script type="text/javascript">
-      new Draggable('bed_box.<%= to_html_tag bed.name %>', { snap: [40, 40] });
+    <script type="text/javascript">
+        new Draggable('bed_box.<%= to_html_tag bed.name %>', { snap: [40, 40] });
     </script>
     <p><%= link_to bed.name, bed %> - <%= bed.field_state %></p>
     <p>Pflanzen: </p>
     <ul>
       <% bed.plants.each do |plant| %>
-      <li>
-        <%= link_to plant, plant%>
-      </li>
-    <%end%>
-      
+        <li> <%= link_to plant, plant%> </li>
+      <%end%>
     </ul>
     <%= link_to "Beetli bepflanzen", edit_bed_path(bed) %>
   </div>

@@ -31,5 +31,9 @@ describe PlantsController do
       delete("/plants/1").should route_to("plants#destroy", :id => "1")
     end
 
+    it "routs to #calculate_harvest_time" do
+      get("plants/5/calculate_harvest_time").should route_to("plants#calculate_harvest_time", :id =>"5")
+    end
+
   end
 end
