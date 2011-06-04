@@ -9,6 +9,23 @@ module WebratDriver
     click_button "Create Family"
   end
 
+  def signup(name, pwd, email)
+    visit signup_path
+    fill_in "account_username", :with => name
+    fill_in "account_email", :with => email
+    fill_in "account_password", :with => pwd
+    fill_in "account_password_confirmation", :with => pwd
+    click_button "account_submit"
+    response
+  end
+
+  def login(user_name_or_pwd, pwd)
+    visit login_path
+    fill_in "login", :with => user_name_or_pwd
+    fill_in "password", :with => pwd
+    click_button "Log in"
+    response
+  end
   def find_family(family_name)
     visit families_path
     response
@@ -27,19 +44,6 @@ module WebratDriver
     response
   end
 
-  #go to edit page
-  def click_edit(the_name)
-    response.should contain the_name
-    click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", "Edit"
-  end
-
-  def click_show(the_name)
-    click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", "Show"
-  end
-
-   def click(the_name)
-    click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", the_name
-  end
 
   def rename_plant(original_name, new_name)
     show_plant_details(original_name)
@@ -72,9 +76,9 @@ module WebratDriver
     click_button
   end
 
-  def create_new_bed(name, field_state)
+  def create_new_bed(bed_name, field_state)
     visit new_bed_path
-    fill_in "bed_name", :with => name
+    fill_in "bed_name", :with => bed_name
 
     select field_state, :from => "bed[field_state]"
     click_button "bed_submit"
@@ -90,7 +94,7 @@ module WebratDriver
 
   def show_bed_details(the_name)
     visit beds_path
-    click_show the_name
+    click the_name
   end
 
   def edit_bed_details(the_name)
@@ -101,11 +105,33 @@ module WebratDriver
 
 
   def add_plants_to_bed(bed_name, plant_names)
-    visit beds_path
-    click_edit  bed_name
-    select_multiple plant_names
-    click_button
+    show_bed_details(bed_name)
+    plant_names.each do |plant_name|
+      click_link "Edit"
+      select plant_name
+      click_button "bed_submit"
+      #bed/<id>/show
+      response.should contain plant_name
+    end
+
   end
+
+  private
+
+  #go to edit page
+  def click_edit(the_name)
+    response.should contain the_name
+    click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", "Edit"
+  end
+
+  def click_show(the_name)
+    click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", "Show"
+  end
+
+   def click(the_name)
+    click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", the_name
+  end
+
 
 
 

@@ -2,22 +2,28 @@
 !!!
 %html
   %head
-    %title Gurke
+    %title
+      = yield(:title) || "Untitled"
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-  #leftcont
-    #leftimg
-      %a{ :title =>"home", :href =>"/"}
-        %img{:alt => "image description", :src => "/images/menu-top.jpg"}
-    #menu
-      %ul
-        %li
-          %a{:title=>"Pflanzen", :href=>"/plants"} Pflanzen
-        %li
-          %a{:title=>"Gattungen", :href=>"/families"} Gattungen
-        %li
-          %a{:title=>"Garten", :href=>"/beds"} Garten
-  #main
-    = yield
+    #header
+      = render 'layouts/header'
+    #leftcont
+      #leftimg
+        %a{ :title =>"home", :href =>"/"}
+          %img{:alt => "image description", :src => "/images/menu-top.jpg"}
+      #menu
+        %ul
+          %li
+            %a{:title=>"Pflanzen", :href=>"/plants"} Pflanzen
+          %li
+            %a{:title=>"Gattungen", :href=>"/families"} Gattungen
+          %li
+            %a{:title=>"Garten", :href=>"/beds"} Garten
+    #main
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
+
+      = yield

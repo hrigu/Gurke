@@ -25,13 +25,19 @@ gem 'ruby-debug'
 # gem 'nokogiri'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
+gem "bcrypt-ruby", :require => "bcrypt"
+
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+
   gem 'rspec-rails'
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'webrat'
+  gem 'nifty-generators'
+  gem 'mocha'
+  gem 'factory_girl'
 end

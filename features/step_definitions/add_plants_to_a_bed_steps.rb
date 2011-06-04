@@ -17,5 +17,8 @@ When /^I add "([^"]*)"$/ do |plant_names|
 end
 
 Then /^Gurke adds the plants to the bed$/ do
-  pending # express the regexp above with the code you wish you had
+  show_bed_details(@name)
+  @plant_names.each do |pn|
+    response.should contain pn
+  end
 end

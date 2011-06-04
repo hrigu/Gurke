@@ -1,4 +1,5 @@
 class BedsController < ApplicationController
+before_filter :login_required
   # GET /beds
   # GET /beds.xml
   def index

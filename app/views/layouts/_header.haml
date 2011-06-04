@@ -1,0 +1,10 @@
+- if logged_in? then
+  %div{"id" => "logged_in_as_#{current_account.username}"}
+    %p
+      welcome #{current_account.username}
+      = link_to "Log out", logout_path
+      |
+      = link_to "Edit profile", edit_current_account_path
+- else
+  #not_logged_in
+    %p= link_to "Log in", login_path

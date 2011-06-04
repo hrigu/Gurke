@@ -43,6 +43,20 @@ a:hover
 	text-decoration: none;
 }
 
+#header
+{
+	position: absolute;
+	top: 0;
+	left: 240px;
+	width: 100%;
+	height: 50px;
+	overflow:hidden;
+	background: #693;
+	border-right:1px solid #5C8A2E;
+    padding-left: 10px;
+	color: #FFF;
+}
+
 #leftcont
 {
 	position: absolute;
@@ -71,7 +85,6 @@ a:hover
 {
 	list-style-type: none;
 }
-
 #menu a
 {
 	display: block;
@@ -81,6 +94,14 @@ a:hover
 	width: 210px;
 	background: #5C8A2E;
 	border-bottom: 1px solid #507928;
+}
+
+#header a
+{
+	padding: 7px 15px;
+	color: #FFF;
+	text-decoration: none;
+	width: 210px;
 }
 
 #menu a:hover
@@ -93,6 +114,7 @@ a:hover
 {
 	width: auto; /* or you can set a specific width like - width: 610px; */
 	margin-left: 245px;
+	margin-top: 50px;
 	padding: 20px;
 }
 
@@ -153,4 +175,20 @@ a:hover
 {
 	margin: 0;
 	padding: 0;
+}
+
+#flash_notice,
+#flash_error,
+#flash_alert
+{
+  padding: 5px 8px;
+  margin: 10px 0;
+  background-color: #ffcccc;
+  border: solid 1px #cc6666;
+}
+
+#flash_notice
+{
+  background-color: #ccffcc;
+  border: solid 1px #66cc66;
 }

@@ -10,8 +10,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
-    when /the new add_plants_to_a_bed page/
-      new_add_plants_to_a_bed_path
+    when /the new login page/
+      new_login_path
 
 
     # Add more mappings here.

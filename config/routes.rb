@@ -1,4 +1,16 @@
 Gurke::Application.routes.draw do
+  match 'account/edit' => 'accounts#edit', :as => :edit_current_account
+
+  match 'signup' => 'accounts#new', :as => :signup
+
+  match 'logout' => 'sessions#destroy', :as => :logout
+
+  match 'login' => 'sessions#new', :as => :login
+
+  resources :sessions
+
+  resources :accounts
+
   resources :plants_of_beds
 
   resources :beds

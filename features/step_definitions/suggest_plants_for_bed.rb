@@ -4,10 +4,13 @@ def scan_to_a s
   res
 end
 
+#see the login step in login_steps.rb
+
 Given /^A bed with name "([^"]*)" and field "([^"]*)"$/ do |name, field|
   @name = name
   create_new_bed(name, field)
 end
+
 
 When /^I ask Gurke for a plant to seed there$/ do
   @site_content = edit_bed_details(@name)
