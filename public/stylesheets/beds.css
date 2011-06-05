@@ -11,7 +11,7 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-div[id*="bed_box"] {
+div.draggable {
     padding: 5px;
     margin: 10px;
     width:150px;

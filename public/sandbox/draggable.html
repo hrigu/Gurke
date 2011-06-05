@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery.js?1307295951"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <style type="text/css">
+            div.draggable {
+                padding: 5px;
+                margin: 10px;
+                width:150px;
+                border:2px solid #5E8E3E;
+            }
+        </style>
+        <script>
+            $(document).ready(function() {
+            $(".draggable").draggable();
+            });
+        </script>
+    </head>
+    <body style="font-size:62.5%;">
+
+        <div class="draggable">
+            <p><a href="/beds/1">Beetli Nord</a> - B</p>
+            <p>Pflanzen: </p>
+            <ul>
+                <li> <a href="/plants/5">Chicoree</a> </li>
+
+            </ul>
+            <a href="/beds/1/edit">Beetli bepflanzen</a>
+        </div>
+
+
+
+    </body>
+</html>

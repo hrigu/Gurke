@@ -4,10 +4,7 @@
 
 <% @beds.each do |bed| %>
 
-  <div id="bed_box.<%= to_html_tag bed.name %>">
-    <script type="text/javascript">
-        new Draggable('bed_box.<%= to_html_tag bed.name %>', { snap: [40, 40] });
-    </script>
+  <div class="draggable" id="bed_box.<%= to_html_tag bed.name %>">
     <p><%= link_to bed.name, bed %> - <%= bed.field_state %></p>
     <p>Pflanzen: </p>
     <ul>
