@@ -27,6 +27,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 gem "bcrypt-ruby", :require => "bcrypt"
 
+#switch from prototype to jquery. Also replaces rails.js with jquery_ujs (https://github.com/rails/jquery-ujs)
+gem 'jquery-rails', '>= 1.0.3'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
