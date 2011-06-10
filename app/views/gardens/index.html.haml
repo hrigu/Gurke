@@ -1,0 +1,12 @@
+- title "Gardens"
+
+%table
+  %tr
+    %th Name
+    %th Place
+  - for garden in @gardens
+    %tr
+      %td= link_to garden.name, garden
+      %td= garden.place
+
+%p= link_to "New Garden", new_garden_path

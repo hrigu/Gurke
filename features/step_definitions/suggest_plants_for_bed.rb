@@ -8,12 +8,12 @@ end
 
 Given /^A bed with name "([^"]*)" and field "([^"]*)"$/ do |name, field|
   @name = name
-  create_new_bed(name, field)
+  create_new_bed(@garden.name, name, field)
 end
 
 
 When /^I ask Gurke for a plant to seed there$/ do
-  @site_content = edit_bed_details(@name)
+  @site_content = edit_bed_details(@garden.name, @name)
 end
 
 Then /^Gurke suggests plants "([^"]*)"$/ do |expected_plant_names|

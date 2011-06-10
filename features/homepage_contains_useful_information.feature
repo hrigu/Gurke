@@ -12,4 +12,4 @@ Feature: Homepage contains usefull information
       | diplay_name | target   |
       | Pflanzen    | plants   |
       | Gattungen   | families |
-      | Garten      | beds     |
+      | Garten      | gardens  |

@@ -5,6 +5,7 @@ Feature: suggest plants for a bed
 
   Scenario Outline:
     Given the gardener "fritz" is logged in
+    And the garden "Pflanzblätz"
     And A bed with name "<name>" and field "<field>"
     When I ask Gurke for a plant to seed there
     Then Gurke suggests plants "<plants>"

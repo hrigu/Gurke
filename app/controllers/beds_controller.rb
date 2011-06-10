@@ -1,5 +1,6 @@
 class BedsController < ApplicationController
 before_filter :login_required
+before_filter :find_garden
   # GET /beds
   # GET /beds.xml
   def index
@@ -21,8 +22,7 @@ before_filter :login_required
     end
   end
 
-  # GET /beds/new
-  # GET /beds/new.xml
+  # called before render the form
   def new
     @bed = Bed.new
     @possible_states = FieldState::all_states.collect{|state| [state.id, state.id]}
@@ -41,14 +41,13 @@ before_filter :login_required
 
   end
 
-  # POST /beds
-  # POST /beds.xml
+  # called after submitting the new form
   def create
     @bed = Bed.new(params[:bed])
-
+    @bed.garden = @garden
     respond_to do |format|
       if @bed.save
-        format.html { redirect_to(@bed, :notice => 'Bed was successfully created.') }
+        format.html { redirect_to(@garden, :notice => 'Bed was successfully created.') }
         format.xml  { render :xml => @bed, :status => :created, :location => @bed }
       else
         format.html { render :action => "new" }
@@ -69,11 +68,11 @@ before_filter :login_required
 
     respond_to do |format|
       if @bed.update_attributes(params[:bed])
-        format.html { redirect_to(@bed, :notice => 'Bed was successfully updated.') }
+        format.html { redirect_to(@garden, :notice => 'Bed was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @bed.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @garden.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -85,8 +84,13 @@ before_filter :login_required
     @bed.destroy
 
     respond_to do |format|
-      format.html { redirect_to(beds_url) }
+      format.html { redirect_to(@garden) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  def find_garden
+    @garden = Garden.find(params[:garden])
   end
 end

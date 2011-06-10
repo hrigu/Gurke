@@ -76,10 +76,11 @@ module WebratDriver
     click_button
   end
 
-  def create_new_bed(bed_name, field_state)
-    visit new_bed_path
+  def create_new_bed(garden_name, bed_name, field_state)
+    visit gardens_path
+    click_link garden_name
+    click_link "Neues Beet"
     fill_in "bed_name", :with => bed_name
-
     select field_state, :from => "bed[field_state]"
     click_button "bed_submit"
   end
@@ -92,25 +93,26 @@ module WebratDriver
     click_button "bed_submit"
   end
 
-  def show_bed_details(the_name)
-    visit beds_path
-    click the_name
+  def show_bed_details(garden_name, bed_name)
+    visit gardens_path
+    click_link garden_name
+    click bed_name
   end
 
-  def edit_bed_details(the_name)
-    visit beds_path
-    click the_name
+  def edit_bed_details(garden_name, bed_name)
+    visit gardens_path
+    click_link garden_name
+    click bed_name
     click_link "Edit"
   end
 
 
-  def add_plants_to_bed(bed_name, plant_names)
-    show_bed_details(bed_name)
+  def add_plants_to_bed(garden_name, bed_name, plant_names)
     plant_names.each do |plant_name|
+      show_bed_details(garden_name, bed_name)
       click_link "Edit"
       select plant_name
       click_button "bed_submit"
-      #bed/<id>/show
       response.should contain plant_name
     end
 
