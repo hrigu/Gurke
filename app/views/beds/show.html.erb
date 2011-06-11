@@ -15,6 +15,6 @@
   <%  end %>
 </p>
 
-<%= link_to 'Edit', edit_bed_path(@bed, :garden => @garden) %> |
-<%= link_to 'Destroy', bed_path(@bed, :garden => @garden), :confirm => 'Are you sure?', :method => :delete %> |
+<%= link_to 'Edit', edit_garden_bed_path(@garden, @bed) %> |
+<%= link_to 'Destroy', [@garden, @bed], :confirm => 'Are you sure?', :method => :delete %> |
 <%= link_to 'zurück zum Garten', @garden %>

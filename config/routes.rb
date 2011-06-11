@@ -8,9 +8,9 @@ Gurke::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  resources :gardens
-  
-  resources :beds
+  resources :gardens do
+    resources :beds
+  end
 
   resources :sessions
 

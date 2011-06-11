@@ -1,8 +1,7 @@
 class BedsController < ApplicationController
 before_filter :login_required
 before_filter :find_garden
-  # GET /beds
-  # GET /beds.xml
+
   def index
     @beds = Bed.all
 
@@ -12,10 +11,8 @@ before_filter :find_garden
     end
   end
 
-  # GET /beds/1
-  # GET /beds/1.xml
   def show
-    @bed = Bed.find(params[:id])
+    @bed = @garden.beds.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bed }
@@ -35,7 +32,7 @@ before_filter :find_garden
 
   # GET /beds/1/edit
   def edit
-    @bed = Bed.find(params[:id])
+    @bed = @garden.beds.find(params[:id])
     @possible_states = FieldState::all_states.collect{|state| [state.id, state.id]}
     @possible_plants = @bed.possible_plants.collect{|plant| [plant.name, plant.id]}
 
@@ -59,7 +56,7 @@ before_filter :find_garden
   # PUT /beds/1
   # PUT /beds/1.xml
   def update
-    @bed = Bed.find(params[:id])
+    @bed = @garden.beds.find(params[:id])
     plant_ids=params[:selected_plants][:plant_ids].collect { |s|s.to_i  }
     puts plant_ids
     @bed.plant_ids = @bed.plant_ids.concat plant_ids
@@ -80,7 +77,7 @@ before_filter :find_garden
   # DELETE /beds/1
   # DELETE /beds/1.xml
   def destroy
-    @bed = Bed.find(params[:id])
+    @bed = @garden.beds.find(params[:id])
     @bed.destroy
 
     respond_to do |format|
@@ -91,6 +88,6 @@ before_filter :find_garden
 
   private
   def find_garden
-    @garden = Garden.find(params[:garden])
+    @garden = Garden.find(params[:garden_id])
   end
 end

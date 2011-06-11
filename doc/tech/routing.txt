@@ -1,0 +1,44 @@
+routing
+
+use when:
+---------
+ - has-many relationships
+ - foreign-key in the url  ...beds/new?garden_id=2
+in routes.rb:
+	gardens do |garden|
+		beds
+	end
+
+controller:
+-----------
+def create
+	@garden = Garden.find(params[:garden_id])
+	@bed = Bed.new ...
+
+	
+UI:
+---
+links:
+beds_path => garden_beds_path
+    edit
+        alt: <%= link_to 'Edit', edit_bed_path(@bed, :garden => @garden) %>
+	neu: <%= link_to 'Edit', edit_garden_bed_path(@garden, @bed) %>
+    Destroy
+        alt: <%= link_to 'Destroy', bed_path(@bed, :garden => @garden)
+	neu: = link_to "Destroy", [@garden, @bed], :method
+    Show
+        alt:<%= link_to 'Show', @bed %> |
+        neu: <%= link_to 'Show', [@garden, @bed] %> |
+form
+        alt: <%= form_for @bed, :url => bed_path(@bed, :garden => @garden) do |f| %>
+	<% form_for [@garden, @bed] do |f| %>
+
+	
+	
+	
+screencast snippets
+<%= link_to pluralize(@garden.beds.size, 'bed'), garden_beds_path(@garden) %>
+<%= link_to "New bed", new_garden_bed_path(@garden) %>
+<%= link_to "Edit", edit_bed_path(bed) %>
+<%= link_to "Destroy", bed, :method => :delete, :confirm => "Are you sure?" %>
+<% form_for [@garden, @bed] do |f| %>
