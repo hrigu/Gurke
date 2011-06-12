@@ -2,66 +2,83 @@ module WebratDriver
   include ApplicationHelper
 
   
-  def create_new_family(family, energy)
-    visit new_family_path
-    fill_in "Name", :with => family
-    fill_in "Energy", :with => energy
-    click_button "Create Family"
+  def create_new_family(family_name, energy_name, type_name)
+    families_page = @current_page.move_to_families_page
+    new_family_page = families_page.move_to_new_family_page
+    @current_page = new_family_page.create_new(family_name, energy_name, type_name)
+  end
+
+  def page_should_contain(text_array)
+    content = @current_page.content
+    text_array.each do |text|
+      content.should contain text
+    end
   end
 
   def signup(name, pwd, email)
-    visit signup_path
-    fill_in "account_username", :with => name
-    fill_in "account_email", :with => email
-    fill_in "account_password", :with => pwd
-    fill_in "account_password_confirmation", :with => pwd
-    click_button "account_submit"
-    response
+    home_page = HomePage.new(self).visit_me
+    login_page = home_page.move_to_login_page
+    signup_page = login_page.move_to_signup_page
+    home_page = signup_page.signup(name, email, pwd)
+    home_page.content
   end
 
   def login(user_name_or_pwd, pwd)
-    visit login_path
-    fill_in "login", :with => user_name_or_pwd
-    fill_in "password", :with => pwd
-    click_button "Log in"
-    response
+    home = visit_the_site
+    login = home.move_to_login_page
+    home = login.login(home, user_name_or_pwd, pwd)
+    @current_page = home
   end
-  def find_family(family_name)
-    visit families_path
-    response
+
+  def visit_the_site
+    HomePage.new(self).visit_me
   end
+
+  #precondition:logged_in
+  def move_to_family_page(family_name)
+    families_page = @current_page.move_to_families_page
+    family_page = families_page.move_to_family_page(family_name)
+    family_page.content.should contain(family_name)
+    @current_page = family_page
+    @current_page.content
+
+  end
+
   def create_new_plant(plant_name, family_name)
-    visit new_plant_path
-    fill_in "Name", :with => plant_name
-    fill_in "plant_seed_from_month", :with => "4"
-    fill_in "plant_seed_to_month", :with  => "7"
-    select family_name, :from => "plant[family_id]"
-    click_button "Create Plant"
+    plants_page = @current_page.move_to_plants_page
+    plants_new_page = plants_page.move_to_new_plant_page
+    plant_page = plants_new_page.create_new(plant_name, family_name)
+    @current_page = plant_page
+    @current_page.content
   end
 
-  def find_plant(name)
-    visit plants_path
-    response
+  def move_to_plant_page(name)
+    @current_page ||= visit_the_site
+    plants_page = @current_page.move_to_plants_page
+    plant_page = plants_page.move_to_plant_page(name)
+    @current_page = plant_page
+    @current_page.content
+
   end
 
 
-  def rename_plant(original_name, new_name)
-    show_plant_details(original_name)
-    click_edit  original_name
-    fill_in "Name", :with => new_name
-    click_button
+  def rename_plant(new_name)
+    plant_edit_page = @current_page.move_to_edit_page
+    plant_page = plant_edit_page.edit_name(new_name)
+    @current_page = plant_page
+    @current_page.content
   end
 
-  def rename_family(original_name, new_name)
-    visit families_path
-    click_edit  original_name
-    fill_in "Name", :with => new_name
-    click_button
+  def rename_family(new_name)
+    family_edit_page = @current_page.move_to_edit_page
+    family_page = family_edit_page.edit_name(new_name)
+    @current_page = family_page
+    @current_page.content
   end
 
   def show_family_details(the_name)
     visit families_path
-    click_show the_name
+    click_link the_name
   end
 
   def show_plant_details(the_name)
@@ -130,7 +147,7 @@ module WebratDriver
     click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", "Show"
   end
 
-   def click(the_name)
+  def click(the_name)
     click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", the_name
   end
 

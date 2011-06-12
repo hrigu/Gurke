@@ -4,3 +4,8 @@ Given /^the gardener "([^"]*)" is logged in$/ do |name|
   login(@account.username, @account.password)
   response.should have_selector("div[id=\"logged_in_as_#{@account.username}\"]")
 end
+
+Given /^I am logged in as admin user$/ do
+  @account = Factory.create(:account, :username => "admin", :password => "secret", :admin => true)
+  login(@account.username, @account.password)
+end

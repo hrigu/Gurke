@@ -3,7 +3,7 @@ Feature: Register new Gardener
   as a gardener
   I want to be able to login
 
-  Scenario: Register successfully as a new gardener
+  Scenario: Signup successfully as a new gardener
     Given I am a new gardener with name "fritz", password "gruen", and email "fritz@test.com"
     When I sign up
     Then I have an account on gurke

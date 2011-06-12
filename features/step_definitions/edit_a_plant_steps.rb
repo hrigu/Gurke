@@ -1,17 +1,17 @@
 Given /^the plant "([^"]*)" is already known$/ do |original_name|
   @original_name = original_name
-  @response = find_plant original_name
-  @response.should contain original_name
+  move_to_plant_page original_name
+  page_should_contain [original_name]
 end
 
 When /^I rename the plant to "([^"]*)"$/ do |new_name|
   @new_name = new_name
-  @response = rename_plant(@original_name, @new_name)
+  @response = rename_plant(@new_name)
 end
 
 Then /^the plant is available under the new name$/ do
   @response.should contain(@new_name)
-  @response = find_plant(@new_name)
+  @response = move_to_plant_page(@new_name)
   @response.should contain(@new_name)
 end
 
