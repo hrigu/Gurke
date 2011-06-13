@@ -8,7 +8,7 @@ class SignupPage < BasePage
     fill_in "account_password", :with => pwd
     fill_in "account_password_confirmation", :with => pwd
     click_button "account_submit"
-    HomePage.new(@world, response)
+    next_page(:HomePage)
   end
 
 end

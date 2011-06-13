@@ -1,36 +1,59 @@
 class BasePage
   attr_accessor :content
 
-  def initialize(world, content = nil)
-    @world = world
-    @content = content
+  def initialize(app)
+    @app = app
   end
-
-  def method_missing(sym, *args, &block)
-  #  puts "method_missing: #{sym}, #{args}"
-    @world.send sym, *args, &block
-  end
-
   #left
-    def move_to_login_page
+
+  def move_to_home
+    click_link "home"
+    next_page(:HomePage)
+  end
+
+  def move_to_login_page
     click_link "Log in"
-    LoginPage.new(@world, response)
+    next_page(:LoginPage)
   end
 
   def move_to_plants_page
-   click_link "Pflanzen"
-    PlantsPage.new(@world, response)
+    click_link "Pflanzen"
+    next_page(:PlantsPage)
 
   end
 
   def move_to_families_page
     click_link "Gattungen"
-    FamiliesPage.new(@world, response)
+    next_page(:FamiliesPage)
   end
 
   def move_to_garten_page
     click_link "Garten"
-    GardensPage.new(@world, response)
+    next_page(:GardensPage)
   end
+
+  def to_s
+    self.class.name
+  end
+
+  def inspect
+    to_s
+  end
+
+  #overwrite
+  def select(*args)
+    @app.world.select(*args)
+  end
+
+  protected
+
+  def method_missing(sym, *args, &block)
+    @app.world.send(sym, *args, &block)
+  end
+
+  def next_page(page_class_sym)
+    @app.find_page(page_class_sym, response)
+  end
+
 
 end

@@ -5,8 +5,8 @@ class PlantNewPage < BasePage
     fill_in "plant_seed_from_month", :with => "4"
     fill_in "plant_seed_to_month", :with  => "7"
     #otherwise Kernel#select is called
-    @world.select family_name, :from => "plant[family_id]"
+    @app.world.select family_name, :from => "plant[family_id]"
     click_button "Create Plant"
-    PlantPage.new(@world, response)
+    next_page(:PlantPage)
   end
 end

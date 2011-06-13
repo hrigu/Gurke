@@ -3,20 +3,27 @@ module WebratDriver
 
   
   def create_new_family(family_name, energy_name, type_name)
-    families_page = @current_page.move_to_families_page
+    families_page = gurke_mock.current_page.move_to_families_page
     new_family_page = families_page.move_to_new_family_page
-    @current_page = new_family_page.create_new(family_name, energy_name, type_name)
+    new_family_page.create_new(family_name, energy_name, type_name)
   end
 
   def page_should_contain(text_array)
-    content = @current_page.content
+    content = gurke_mock.current_page.content
     text_array.each do |text|
       content.should contain text
     end
   end
 
+  def page_should_not_contain(text_array)
+    content = gurke_mock.current_page.content
+    text_array.each do |text|
+      content.should_not contain text
+    end
+  end
+
   def signup(name, pwd, email)
-    home_page = HomePage.new(self).visit_me
+    home_page = gurke_mock.visit_site
     login_page = home_page.move_to_login_page
     signup_page = login_page.move_to_signup_page
     home_page = signup_page.signup(name, email, pwd)
@@ -24,61 +31,41 @@ module WebratDriver
   end
 
   def login(user_name_or_pwd, pwd)
-    home = visit_the_site
+    home = gurke_mock.visit_site
     login = home.move_to_login_page
-    home = login.login(home, user_name_or_pwd, pwd)
-    @current_page = home
+    home = login.login(user_name_or_pwd, pwd)
   end
 
-  def visit_the_site
-    HomePage.new(self).visit_me
-  end
 
   #precondition:logged_in
   def move_to_family_page(family_name)
-    families_page = @current_page.move_to_families_page
+    families_page = gurke_mock.current_page.move_to_families_page
     family_page = families_page.move_to_family_page(family_name)
     family_page.content.should contain(family_name)
-    @current_page = family_page
-    @current_page.content
-
   end
 
   def create_new_plant(plant_name, family_name)
-    plants_page = @current_page.move_to_plants_page
+    plants_page = gurke_mock.current_page.move_to_plants_page
     plants_new_page = plants_page.move_to_new_plant_page
     plant_page = plants_new_page.create_new(plant_name, family_name)
-    @current_page = plant_page
-    @current_page.content
   end
 
   def move_to_plant_page(name)
-    @current_page ||= visit_the_site
-    plants_page = @current_page.move_to_plants_page
+    gurke_mock.visit_site
+    plants_page = gurke_mock.current_page.move_to_plants_page
     plant_page = plants_page.move_to_plant_page(name)
-    @current_page = plant_page
-    @current_page.content
-
   end
 
 
   def rename_plant(new_name)
-    plant_edit_page = @current_page.move_to_edit_page
+    plant_edit_page = gurke_mock.current_page.move_to_edit_page
     plant_page = plant_edit_page.edit_name(new_name)
-    @current_page = plant_page
-    @current_page.content
+    plant_page.content
   end
 
   def rename_family(new_name)
-    family_edit_page = @current_page.move_to_edit_page
+    family_edit_page = gurke_mock.current_page.move_to_edit_page
     family_page = family_edit_page.edit_name(new_name)
-    @current_page = family_page
-    @current_page.content
-  end
-
-  def show_family_details(the_name)
-    visit families_path
-    click_link the_name
   end
 
   def show_plant_details(the_name)
@@ -87,10 +74,11 @@ module WebratDriver
   end
 
   def assign_to_other_family(plant_name, new_family_name)
-    show_plant_details(plant_name)
-    click_edit  plant_name
-    select new_family_name
-    click_button
+    plant_edit_page = gurke_mock.current_page.move_to_edit_page
+    plant_page = plant_edit_page.change_family(new_family_name)
+
+#    show_plant_details(plant_name)
+#    click_edit  plant_name
   end
 
   def create_new_bed(garden_name, bed_name, field_state)
@@ -151,7 +139,31 @@ module WebratDriver
     click_link_within "div[id*=\""+to_html_tag(the_name)+"\"]", the_name
   end
 
+  def gurke_mock
+    if @gurke_mock.nil?
+      @gurke_mock = App.new(self)
+    end
+    @gurke_mock
+  end
 
+#  def app
+#    begin
+#      puts "hHHHHHHHHHHHHHHHAAAAAAAAAAAAAALLLLLLLLLLLLLOOOOOOOOOOO"
+#      puts parse_caller(caller(2).first).inspect
+#    rescue Exception => e
+#      puts e.backtrace
+#    end
+#  end
+#
+#
+#  def parse_caller(at)
+#    if /^(.+?):(\d+)(?::in `(.*)')?/ =~ at
+#      file = Regexp.last_match[1]
+#      line = Regexp.last_match[2].to_i
+#      method = Regexp.last_match[3]
+#      [file, line, method]
+#    end
+#  end
 
 
 end

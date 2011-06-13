@@ -5,6 +5,6 @@ class FamilyNewPage < BasePage
     fill_in "Energy", :with => energy
     fill_in "family_field_state", :with => family_field_state
     click_button "Create Family"
-    FamilyPage.new(@world, response)
+    next_page(:FamilyPage)
   end
 end

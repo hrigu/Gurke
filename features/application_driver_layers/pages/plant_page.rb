@@ -2,7 +2,7 @@ class PlantPage < BasePage
 
   def move_to_edit_page
     click_link "Edit"
-    PlantEditPage.new(@world, response)
+    next_page(:PlantEditPage)
   end
   
 end

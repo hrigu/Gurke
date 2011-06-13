@@ -25,6 +25,7 @@ class PlantTest < ActiveSupport::TestCase
     average_harvest_time = plant.calculate_minimum_harvest_time(DateInYear.new(1,4))
     assert_equal DateInYear.new(25,5), average_harvest_time
   end
+
   test "calculate maximum harvest time of ruebli" do
     plant = plants(:ruebli)
     average_harvest_time = plant.calculate_maximum_harvest_time(DateInYear.new(1,4))
