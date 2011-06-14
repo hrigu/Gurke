@@ -84,35 +84,26 @@ module WebratDriver
     garden_page = bed_new_page.create_new(bed_name, field_state)
   end
 
-#  def find_bed(bed_name)
-#    visit new_bed_path
-#    fill_in "bed_name", :with => bed_name
-#
-#    select bed_field_state, :from => "bed[field_state]"
-#    click_button "bed_submit"
-#  end
-
   def show_bed_details(garden_name, bed_name)
-    visit gardens_path
-    click_link garden_name
-    click bed_name
+    gardens_page = gurke_mock.current_page.move_to_gardens_page
+    garden_page = gardens_page.move_to_garden_page(garden_name)
+    garden_page.move_to_bed_page bed_name
   end
 
   def edit_bed_details(garden_name, bed_name)
-    visit gardens_path
-    click_link garden_name
-    click bed_name
-    click_link "Edit"
+    bed_page = show_bed_details(garden_name, bed_name)
+    bed_page.move_to_edit_page
   end
 
 
   def add_plants_to_bed(garden_name, bed_name, plant_names)
+    gardens_page = gurke_mock.current_page.move_to_gardens_page
+    garden_page = gardens_page.move_to_garden_page(garden_name)
     plant_names.each do |plant_name|
-      show_bed_details(garden_name, bed_name)
-      click_link "Edit"
-      select plant_name
-      click_button "bed_submit"
-      response.should contain plant_name
+      bed_page = garden_page.move_to_bed_page(bed_name)
+      bed_edit_page = bed_page.move_to_edit_page
+      garden_page = bed_edit_page.add_plant(plant_name)
+      garden_page.content.should contain plant_name
     end
 
   end

@@ -92,6 +92,14 @@ class PageObjectsTest < Test::Unit::TestCase
     garden_page = bed_new_page.create_new "bed_name", "C"
     assert_page(GardenPage, a, garden_page)
 
+    bed_page = garden_page.move_to_bed_page("bed_name")
+    assert_page(BedPage, a, bed_page)
+
+    bed_edit_page = bed_page.move_to_edit_page
+    assert_page(BedEditPage, a, bed_edit_page)
+
+    garden_page = bed_edit_page.add_plant("plant_name")
+    assert_page(GardenPage, a, garden_page)
 
   end
 

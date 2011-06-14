@@ -21,7 +21,5 @@ end
 
 Then /^Gurke adds the plants to the bed$/ do
   show_bed_details(@garden.name, @name)
-  @plant_names.each do |pn|
-    response.should contain pn
-  end
+  page_should_contain(@plant_names)
 end
