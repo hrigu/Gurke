@@ -27,7 +27,7 @@ class BasePage
     next_page(:FamiliesPage)
   end
 
-  def move_to_garten_page
+  def move_to_gardens_page
     click_link "Garten"
     next_page(:GardensPage)
   end
@@ -54,6 +54,5 @@ class BasePage
   def next_page(page_class_sym)
     @app.find_page(page_class_sym, response)
   end
-
 
 end

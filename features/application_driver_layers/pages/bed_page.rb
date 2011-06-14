@@ -1,4 +1,4 @@
-class BedPage
+class BedPage < BasePage
   def initialize
     
   end

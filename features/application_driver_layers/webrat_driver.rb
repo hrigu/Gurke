@@ -47,13 +47,13 @@ module WebratDriver
   def create_new_plant(plant_name, family_name)
     plants_page = gurke_mock.current_page.move_to_plants_page
     plants_new_page = plants_page.move_to_new_plant_page
-    plant_page = plants_new_page.create_new(plant_name, family_name)
+    plants_new_page.create_new(plant_name, family_name)
   end
 
   def move_to_plant_page(name)
     gurke_mock.visit_site
     plants_page = gurke_mock.current_page.move_to_plants_page
-    plant_page = plants_page.move_to_plant_page(name)
+    plants_page.move_to_plant_page(name)
   end
 
 
@@ -65,38 +65,32 @@ module WebratDriver
 
   def rename_family(new_name)
     family_edit_page = gurke_mock.current_page.move_to_edit_page
-    family_page = family_edit_page.edit_name(new_name)
+    family_edit_page.edit_name(new_name)
   end
 
   def show_plant_details(the_name)
-    visit plants_path
-    click the_name
+    gurke_mock.current_page.move_to_plants_page.move_to_plant_page(the_name)
   end
 
   def assign_to_other_family(plant_name, new_family_name)
     plant_edit_page = gurke_mock.current_page.move_to_edit_page
-    plant_page = plant_edit_page.change_family(new_family_name)
-
-#    show_plant_details(plant_name)
-#    click_edit  plant_name
+    plant_edit_page.change_family(new_family_name)
   end
 
   def create_new_bed(garden_name, bed_name, field_state)
-    visit gardens_path
-    click_link garden_name
-    click_link "Neues Beet"
-    fill_in "bed_name", :with => bed_name
-    select field_state, :from => "bed[field_state]"
-    click_button "bed_submit"
+    gardens_page = gurke_mock.current_page.move_to_gardens_page
+    garden_page = gardens_page.move_to_garden_page(garden_name)
+    bed_new_page = garden_page.move_to_new_bed_page
+    garden_page = bed_new_page.create_new(bed_name, field_state)
   end
 
-  def find_bed(bed_name)
-    visit new_bed_path
-    fill_in "bed_name", :with => bed_name
-
-    select bed_field_state, :from => "bed[field_state]"
-    click_button "bed_submit"
-  end
+#  def find_bed(bed_name)
+#    visit new_bed_path
+#    fill_in "bed_name", :with => bed_name
+#
+#    select bed_field_state, :from => "bed[field_state]"
+#    click_button "bed_submit"
+#  end
 
   def show_bed_details(garden_name, bed_name)
     visit gardens_path
@@ -142,6 +136,7 @@ module WebratDriver
   def gurke_mock
     if @gurke_mock.nil?
       @gurke_mock = App.new(self)
+      @gurke_mock.visit_site
     end
     @gurke_mock
   end
