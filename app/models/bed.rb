@@ -1,6 +1,6 @@
 class Bed < ActiveRecord::Base
-  has_many :plants_of_beds
-  has_many :plants, :through => :plants_of_beds #, :source => bed
+  has_many :plants_beds
+  has_many :plants, :through => :plants_beds #, :source => bed
   belongs_to :garden
   attr_accessor :choosen_plants
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110608150905) do
+ActiveRecord::Schema.define(:version => 20110615120459) do
 
   create_table "accounts", :force => true do |t|
     t.string   "username"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20110608150905) do
     t.integer  "variability_in_percent"
   end
 
-  create_table "plants_of_beds", :force => true do |t|
+  create_table "plants_beds", :force => true do |t|
     t.integer  "plant_id"
     t.integer  "bed_id"
     t.float    "amount"

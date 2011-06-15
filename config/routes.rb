@@ -16,8 +16,6 @@ Gurke::Application.routes.draw do
 
   resources :accounts
 
-  resources :plants_of_beds
-
   resources :families
 
   resources :plants
