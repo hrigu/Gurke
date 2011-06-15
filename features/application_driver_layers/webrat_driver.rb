@@ -4,7 +4,7 @@ module WebratDriver
   
   def create_new_family(family_name, energy_name, type_name)
     families_page = gurke_mock.current_page.move_to_families_page
-    new_family_page = families_page.move_to_new_family_page
+    new_family_page = families_page.move_to_new_page
     new_family_page.create_new(family_name, energy_name, type_name)
   end
 
@@ -40,20 +40,20 @@ module WebratDriver
   #precondition:logged_in
   def move_to_family_page(family_name)
     families_page = gurke_mock.current_page.move_to_families_page
-    family_page = families_page.move_to_family_page(family_name)
+    family_page = families_page.move_to_detail_page(family_name)
     family_page.content.should contain(family_name)
   end
 
   def create_new_plant(plant_name, family_name)
     plants_page = gurke_mock.current_page.move_to_plants_page
-    plants_new_page = plants_page.move_to_new_plant_page
+    plants_new_page = plants_page.move_to_new_page
     plants_new_page.create_new(plant_name, family_name)
   end
 
   def move_to_plant_page(name)
     gurke_mock.visit_site
     plants_page = gurke_mock.current_page.move_to_plants_page
-    plants_page.move_to_plant_page(name)
+    plants_page.move_to_detail_page(name)
   end
 
 
@@ -69,7 +69,7 @@ module WebratDriver
   end
 
   def show_plant_details(the_name)
-    gurke_mock.current_page.move_to_plants_page.move_to_plant_page(the_name)
+    gurke_mock.current_page.move_to_plants_page.move_to_detail_page(the_name)
   end
 
   def assign_to_other_family(plant_name, new_family_name)
@@ -79,15 +79,15 @@ module WebratDriver
 
   def create_new_bed(garden_name, bed_name, field_state)
     gardens_page = gurke_mock.current_page.move_to_gardens_page
-    garden_page = gardens_page.move_to_garden_page(garden_name)
-    bed_new_page = garden_page.move_to_new_bed_page
+    garden_page = gardens_page.move_to_detail_page(garden_name)
+    bed_new_page = garden_page.move_to_new_page
     garden_page = bed_new_page.create_new(bed_name, field_state)
   end
 
   def show_bed_details(garden_name, bed_name)
     gardens_page = gurke_mock.current_page.move_to_gardens_page
-    garden_page = gardens_page.move_to_garden_page(garden_name)
-    garden_page.move_to_bed_page bed_name
+    garden_page = gardens_page.move_to_detail_page(garden_name)
+    garden_page.move_to_detail_page bed_name
   end
 
   def edit_bed_details(garden_name, bed_name)
@@ -98,9 +98,9 @@ module WebratDriver
 
   def add_plants_to_bed(garden_name, bed_name, plant_names)
     gardens_page = gurke_mock.current_page.move_to_gardens_page
-    garden_page = gardens_page.move_to_garden_page(garden_name)
+    garden_page = gardens_page.move_to_detail_page(garden_name)
     plant_names.each do |plant_name|
-      bed_page = garden_page.move_to_bed_page(bed_name)
+      bed_page = garden_page.move_to_detail_page(bed_name)
       bed_edit_page = bed_page.move_to_edit_page
       garden_page = bed_edit_page.add_plant(plant_name)
       garden_page.content.should contain plant_name

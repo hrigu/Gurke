@@ -33,7 +33,7 @@ class PageObjectsTest < Test::Unit::TestCase
     plants_page = home_page.move_to_plants_page
     assert_page(PlantsPage, a, plants_page)
 
-    new_plant_page = plants_page.move_to_new_plant_page
+    new_plant_page = plants_page.move_to_new_page
     assert_page(PlantNewPage, a, new_plant_page)
  
     plant_page = new_plant_page.create_new("plant_name", "family_name")
@@ -56,7 +56,7 @@ class PageObjectsTest < Test::Unit::TestCase
     families_page = home_page.move_to_families_page
     assert_page(FamiliesPage, a, families_page)
 
-    family_new_page = families_page.move_to_new_family_page
+    family_new_page = families_page.move_to_new_page
     assert_page(FamilyNewPage, a, family_new_page)
 
     family_page = family_new_page.create_new("family_name", "starkzehrend", "C")
@@ -74,7 +74,7 @@ class PageObjectsTest < Test::Unit::TestCase
     gardens_page = home_page.move_to_gardens_page
     assert_page(GardensPage, a, gardens_page)
 
-    new_garden_page = gardens_page.move_to_new_garden_page
+    new_garden_page = gardens_page.move_to_new_page
     assert_page(GardenNewPage, a, new_garden_page)
 
     garden_page = new_garden_page.create_new "garden_name", "location"
@@ -83,16 +83,16 @@ class PageObjectsTest < Test::Unit::TestCase
     gardens_page = garden_page.move_to_gardens_page
     assert_page(GardensPage, a, gardens_page)
 
-    garden_page = gardens_page.move_to_garden_page("garden_name")
+    garden_page = gardens_page.move_to_detail_page("garden_name")
     assert_page(GardenPage, a, garden_page)
 
-    bed_new_page = garden_page.move_to_new_bed_page
+    bed_new_page = garden_page.move_to_new_page
     assert_page(BedNewPage, a, bed_new_page)
 
     garden_page = bed_new_page.create_new "bed_name", "C"
     assert_page(GardenPage, a, garden_page)
 
-    bed_page = garden_page.move_to_bed_page("bed_name")
+    bed_page = garden_page.move_to_detail_page("bed_name")
     assert_page(BedPage, a, bed_page)
 
     bed_edit_page = bed_page.move_to_edit_page

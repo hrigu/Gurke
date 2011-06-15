@@ -4,7 +4,7 @@ class FamilyPage < BasePage
     next_page(:FamilyEditPage)
   end
   
-  def move_to_families_page
+  def move_to_list_page
     click_link "Back"
     next_page(:FamiliesPage)
   end
