@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'ci_reporter'
 gem 'heroku'
+
+#haml is better than html
 gem 'haml'
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -24,7 +26,8 @@ gem 'ruby-debug'
 # gem 'bj'
 # gem 'nokogiri'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+
+#for authentication
 gem "bcrypt-ruby", :require => "bcrypt"
 
 #switch from prototype to jquery. Also replaces rails.js with jquery_ujs (https://github.com/rails/jquery-ujs)
@@ -39,6 +42,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'webrat'
+  #generators, for examples for authentications
   gem 'nifty-generators'
   gem 'mocha'
   gem 'factory_girl'
