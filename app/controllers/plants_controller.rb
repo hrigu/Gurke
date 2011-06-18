@@ -1,12 +1,12 @@
 class PlantsController < ApplicationController
   include PlantsHelper
-  
-  #load_and_authorize_resource
-  authorize_resource
+
+  #see http://rdoc.info/github/ryanb/cancan/master/CanCan/ControllerAdditions/ClassMethods:load_resource
+  load_and_authorize_resource
 
   # GET /calculate_harvest_time
   def calculate_harvest_time
-    @plant = Plant.find(params[:id])
+ #   @plant = Plant.find(params[:id])
     @selected_seed_day = params[:harvest_time_calculation][:seed_day]
     @selected_seed_month =  params[:harvest_time_calculation][:seed_month]
     seed_time = DateInYear.new day_from_rendered_seed_time(@selected_seed_day),month_from_rendered_seed_time(@selected_seed_month)
@@ -19,27 +19,24 @@ class PlantsController < ApplicationController
   # GET /plants
   # GET /plants.xml
   def index
-    @plants = Plant.all
+    #@plant is set by cancan before filter load_and_authorize_resource using Plant.accessible_by(current_ability).
+    # see: http://rdoc.info/github/ryanb/cancan/master/CanCan/ModelAdditions/ClassMethods:accessible_by
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @plants }
     end
   end
 
-  # GET /plants/1
-  # GET /plants/1.xml
   def show
-    @plant = Plant.find(params[:id])
+    #@plant is set by cancan before filter load_and_authorize_resource using find(params[:id]
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @plant }
     end
   end
 
-  # GET /plants/new
-  # GET /plants/new.xml
   def new
-    @plant = Plant.new
+    #@plant is set by cancan before filter load_and_authorize_resource using find(params[:id]
     @families = Family.all
     respond_to do |format|
       format.html # new.html.erb
@@ -47,16 +44,13 @@ class PlantsController < ApplicationController
     end
   end
 
-  # GET /plants/1/edit
   def edit
-    @plant = Plant.find(params[:id])
+    #@plant is set by cancan before filter load_and_authorize_resource using find(params[:id]
     @families = Family.all
   end
 
-  # POST /plants
-  # POST /plants.xml
   def create
-    @plant = Plant.new(params[:plant])
+    #@plant is set by cancan before filter load_and_authorize_resource using new(params[:id]
     respond_to do |format|
       if @plant.save
         format.html { redirect_to(@plant, :notice => 'Plant was successfully created.') }
@@ -69,10 +63,8 @@ class PlantsController < ApplicationController
     end
   end
 
-  # PUT /plants/1
-  # PUT /plants/1.xml
   def update
-    @plant = Plant.find(params[:id])
+    #@plant is set by cancan before filter load_and_authorize_resource using find(params[:id]
     respond_to do |format|
       if @plant.update_attributes(params[:plant])
         format.html { redirect_to(@plant, :notice => 'Plant was successfully updated.') }
@@ -85,10 +77,8 @@ class PlantsController < ApplicationController
     end
   end
 
-  # DELETE /plants/1
-  # DELETE /plants/1.xml
   def destroy
-    @plant = Plant.find(params[:id])
+    #@plant is set by cancan before filter load_and_authorize_resource using find(params[:id]
     @plant.destroy
 
     respond_to do |format|

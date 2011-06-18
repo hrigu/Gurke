@@ -1,51 +1,26 @@
 class FamiliesController < ApplicationController
-  authorize_resource
 
-  # GET /families
-  # GET /families.xml
-  def index
-    @families = Family.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @families }
-    end
-  end
+  #see plants_controller for details
+  load_and_authorize_resource
 
-  # GET /families/1
-  # GET /families/1.xml
-  def show
-    @family = Family.find(params[:id])
+#  def index
+#  end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @family }
-    end
-  end
+  #not necessary, since there is a view called show
+#  def show
+#  end
 
-  # GET /families/new
-  # GET /families/new.xml
   def new
-    @family = Family.new
     @possible_energies = Energy::all_energies.collect{|e| [e.id, e.id]}
     @possible_states = FieldState::all_states.collect{|state| [state.id, state.id]}
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @family }
-    end
   end
 
-  # GET /families/1/edit
   def edit
-    @family = Family.find(params[:id])
     @possible_energies = Energy::all_energies.collect{|e| [e.id, e.id]}
     @possible_states = FieldState::all_states.collect{|state| [state.id, state.id]}
   end
 
-  # POST /families
-  # POST /families.xml
   def create
-    @family = Family.new(params[:family])
 
     respond_to do |format|
       if @family.save
@@ -58,11 +33,7 @@ class FamiliesController < ApplicationController
     end
   end
 
-  # PUT /families/1
-  # PUT /families/1.xml
   def update
-    @family = Family.find(params[:id])
-
     respond_to do |format|
       if @family.update_attributes(params[:family])
         format.html { redirect_to(@family, :notice => 'Family was successfully updated.') }
@@ -74,12 +45,8 @@ class FamiliesController < ApplicationController
     end
   end
 
-  # DELETE /families/1
-  # DELETE /families/1.xml
   def destroy
-    @family = Family.find(params[:id])
     @family.destroy
-
     respond_to do |format|
       format.html { redirect_to(families_url) }
       format.xml  { head :ok }

@@ -32,14 +32,6 @@ class GardensControllerTest < ActionController::TestCase
     assert_equal garden.account, @gardener
   end
 
-  test "gardener should see his garden" do
-    get :show, :id => @gardener.gardens.first.id
-    assert_response :success
-    garden = assigns(:garden)
-    assert_not_nil garden
-    assert_equal garden.account, @gardener
-  end
-
   test "gardener should see other garden" do
     get :show, :id => @other_gardener.gardens.first.id
     assert_response :success

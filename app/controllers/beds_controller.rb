@@ -3,19 +3,7 @@ class BedsController < ApplicationController
   load_and_authorize_resource :garden
   load_and_authorize_resource :bed, :through => :garden
 
-  before_filter :find_garden
-
-  #  def index
-  #    @beds = Bed.all
-  #
-  #    respond_to do |format|
-  #      format.html # index.html.erb
-  #      format.xml  { render :xml => @beds }
-  #    end
-  #  end
-
   def show
-    @bed = @garden.beds.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bed }
@@ -24,7 +12,6 @@ class BedsController < ApplicationController
 
   # called before render the form
   def new
-    @bed = Bed.new
     @possible_states = init_possible_states
 
     respond_to do |format|
@@ -33,9 +20,8 @@ class BedsController < ApplicationController
     end
   end
 
-  # GET /beds/1/edit
   def edit
-    @bed = @garden.beds.find(params[:id])
+#    @bed = @garden.beds.find(params[:id])
     @possible_states = init_possible_states
     @possible_plants = @bed.possible_plants.collect{|plant| [plant.name, plant.id]}
 
@@ -44,7 +30,7 @@ class BedsController < ApplicationController
   # called after submitting the new form
   def create
     @possible_states = init_possible_states
-    @bed = Bed.new(params[:bed])
+ #   @bed = Bed.new(params[:bed])
     @bed.garden = @garden
     respond_to do |format|
       if @bed.save
@@ -60,7 +46,6 @@ class BedsController < ApplicationController
   # PUT /beds/1
   # PUT /beds/1.xml
   def update
-    @bed = @garden.beds.find(params[:id])
     plant_ids=params[:selected_plants][:plant_ids].collect { |s|s.to_i  }
     puts plant_ids
     @bed.plant_ids = @bed.plant_ids.concat plant_ids
@@ -78,12 +63,8 @@ class BedsController < ApplicationController
     end
   end
 
-  # DELETE /beds/1
-  # DELETE /beds/1.xml
   def destroy
-    @bed = @garden.beds.find(params[:id])
     @bed.destroy
-
     respond_to do |format|
       format.html { redirect_to(@garden) }
       format.xml  { head :ok }
@@ -91,9 +72,6 @@ class BedsController < ApplicationController
   end
 
   private
-  def find_garden
-    @garden = Garden.find(params[:garden_id])
-  end
 
   def init_possible_states
     FieldState::all_states.collect{|state| [state.id, state.id]}
