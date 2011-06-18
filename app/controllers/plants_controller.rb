@@ -1,5 +1,9 @@
 class PlantsController < ApplicationController
   include PlantsHelper
+  
+  #load_and_authorize_resource
+  authorize_resource
+
   # GET /calculate_harvest_time
   def calculate_harvest_time
     @plant = Plant.find(params[:id])
@@ -69,8 +73,6 @@ class PlantsController < ApplicationController
   # PUT /plants/1.xml
   def update
     @plant = Plant.find(params[:id])
- 
-
     respond_to do |format|
       if @plant.update_attributes(params[:plant])
         format.html { redirect_to(@plant, :notice => 'Plant was successfully updated.') }

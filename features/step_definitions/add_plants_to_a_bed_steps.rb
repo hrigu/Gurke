@@ -4,10 +4,6 @@ def scan_to_a s
   res
 end
 
-Given /^the garden "([^"]*)"$/ do |garden_name|
-   @garden = Factory.create(:garden, :name => garden_name)
-end
-
 Given /^A bed with name "([^"]*)" and field state "([^"]*)"$/ do |name, field|
   @name = name
   create_new_bed(@garden.name, name, field)

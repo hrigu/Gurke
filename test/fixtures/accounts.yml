@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+admin:
+ username: fritz
+ password_hash: $2a$10$HZ7aWICeQGiOERJHLaqgYeqp4lxr6dMrMwiG.5kFEErEKd9y5VJMu
+ password_salt: $2a$10$HZ7aWICeQGiOERJHLaqgYe
+ email: fritz@gurke.ch
+ admin: true
+
+gardener:
+ username: Vroni
+ password_hash: $2a$10$HZ7aWICeQGiOERJHLaqgYeqp4lxr6dMrMwiG.5kFEErEKd9y5VJMu
+ password_salt: $2a$10$HZ7aWICeQGiOERJHLaqgYe
+ email: vroni@gurke.ch
+ admin: false

@@ -2,6 +2,14 @@ require 'test_helper'
 
 class PlantsControllerTest < ActionController::TestCase
   setup do
+
+    #turn out ability
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    @ability.can :manage, :all
+    @controller.stubs(:current_ability).returns(@ability)
+
+
     @plant = plants(:Zwiebel)
   end
 

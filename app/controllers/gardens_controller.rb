@@ -1,8 +1,9 @@
 class GardensController < ApplicationController
-before_filter :login_required
+  before_filter :login_required
+  load_and_authorize_resource
 
   def index
-    @gardens = Garden.all
+    @gardens = current_account.gardens
   end
 
   def show

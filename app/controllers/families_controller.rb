@@ -1,4 +1,6 @@
 class FamiliesController < ApplicationController
+  authorize_resource
+
   # GET /families
   # GET /families.xml
   def index

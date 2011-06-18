@@ -25,6 +25,9 @@
             %a{:title=>"Gattungen", :href=>"/families"} Gattungen
           %li
             %a{:title=>"Garten", :href=>"/gardens"} Garten
+          - if can? :visit_admin_space, nil
+            %li
+              %a{:title=>"admin", :href=>"/"} Admin
     #main
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"

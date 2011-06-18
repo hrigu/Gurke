@@ -1,6 +1,3 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 GURKE_BASE_DIR = File.expand_path(File.dirname(__FILE__)+ "/../../..")
 APP_DRIVER_LAYER = GURKE_BASE_DIR + "/features/application_driver_layers"
 
@@ -62,7 +59,7 @@ class PageObjectsTest < Test::Unit::TestCase
     family_page = family_new_page.create_new("family_name", "starkzehrend", "C")
     assert_page(FamilyPage, a, family_page)
 
-    puts a.visited_pages.inspect
+#    puts a.visited_pages.inspect
 
   end
 

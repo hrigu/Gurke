@@ -4,6 +4,8 @@ class Bed < ActiveRecord::Base
   belongs_to :garden
   attr_accessor :choosen_plants
 
+  validates :name, :presence => true
+  
   def possible_plants
 
     candidates = []

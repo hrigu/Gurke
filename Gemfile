@@ -29,7 +29,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 #for authentication
 gem "bcrypt-ruby", :require => "bcrypt"
-
+gem "cancan"
 #switch from prototype to jquery. Also replaces rails.js with jquery_ujs (https://github.com/rails/jquery-ujs)
 gem 'jquery-rails', '>= 1.0.3'
 

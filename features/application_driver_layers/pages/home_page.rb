@@ -3,7 +3,7 @@ class HomePage < BasePage
 
   def visit_me
     visit "/"
-    self
+    next_page(:HomePage)
   end
 
 end

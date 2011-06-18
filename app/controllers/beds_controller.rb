@@ -1,15 +1,18 @@
 class BedsController < ApplicationController
-before_filter :login_required
-before_filter :find_garden
+  before_filter :login_required
+  load_and_authorize_resource :garden
+  load_and_authorize_resource :bed, :through => :garden
 
-  def index
-    @beds = Bed.all
+  before_filter :find_garden
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @beds }
-    end
-  end
+  #  def index
+  #    @beds = Bed.all
+  #
+  #    respond_to do |format|
+  #      format.html # index.html.erb
+  #      format.xml  { render :xml => @beds }
+  #    end
+  #  end
 
   def show
     @bed = @garden.beds.find(params[:id])
@@ -22,7 +25,7 @@ before_filter :find_garden
   # called before render the form
   def new
     @bed = Bed.new
-    @possible_states = FieldState::all_states.collect{|state| [state.id, state.id]}
+    @possible_states = init_possible_states
 
     respond_to do |format|
       format.html # new.html.erb
@@ -33,13 +36,14 @@ before_filter :find_garden
   # GET /beds/1/edit
   def edit
     @bed = @garden.beds.find(params[:id])
-    @possible_states = FieldState::all_states.collect{|state| [state.id, state.id]}
+    @possible_states = init_possible_states
     @possible_plants = @bed.possible_plants.collect{|plant| [plant.name, plant.id]}
 
   end
 
   # called after submitting the new form
   def create
+    @possible_states = init_possible_states
     @bed = Bed.new(params[:bed])
     @bed.garden = @garden
     respond_to do |format|
@@ -89,5 +93,9 @@ before_filter :find_garden
   private
   def find_garden
     @garden = Garden.find(params[:garden_id])
+  end
+
+  def init_possible_states
+    FieldState::all_states.collect{|state| [state.id, state.id]}
   end
 end

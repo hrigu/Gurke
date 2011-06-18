@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+pflanzblaetz:
+ name: pflanzblaetz
+ place: kuhweide
+ account: admin
+ 
+rosengarten:
+ name: rosengarten
+ place: suedseite
+ account: gardener

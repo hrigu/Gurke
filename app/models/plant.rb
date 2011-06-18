@@ -3,8 +3,7 @@ class Plant < ActiveRecord::Base
   has_many :plants_beds
   has_many :beds, :through => :plants_beds
 
-  validates_uniqueness_of :name
-  validates_presence_of :name
+  validates :name, :presence => true, :uniqueness => true
 
   validates :seed_from_month, :inclusion => { :in => 1..12 , :message => "gültige Monate: von 1 - 12"}
   validates :seed_to_month, :inclusion => { :in => 1..12 , :message => "gültige Monate: von 1 - 12"}

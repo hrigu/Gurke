@@ -9,4 +9,11 @@ class GardenPage < BasePage
     click_link bed_name
     next_page(:BedPage)
   end
+
+  def visit_me garden
+    visit_garden_path garden
+    next_page(:HomePage)
+  end
+
+
 end

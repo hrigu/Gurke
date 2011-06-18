@@ -24,6 +24,8 @@ module ControllerAuthentication
     @current_account ||= Account.find(session[:account_id]) if session[:account_id]
   end
 
+  alias :current_user :current_account
+
   def logged_in?
     current_account
   end

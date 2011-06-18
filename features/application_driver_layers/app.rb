@@ -37,4 +37,5 @@ class App
     @visited_pages.size >= 2 ? @visited_pages[@visited_pages.size - 2]: nil
   end
 
+
 end
