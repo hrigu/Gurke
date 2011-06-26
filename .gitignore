@@ -6,3 +6,5 @@ test_results
 features/output
 nbproject/*
 public/cucumber_output.html
+.idea
+.bundle
