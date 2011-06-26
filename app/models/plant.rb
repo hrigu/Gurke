@@ -1,4 +1,4 @@
-class Plant < ActiveRecord::Base
+class   Plant < ActiveRecord::Base
   belongs_to :family
   has_many :plants_beds
   has_many :beds, :through => :plants_beds
