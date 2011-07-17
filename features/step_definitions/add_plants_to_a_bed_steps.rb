@@ -1,7 +1,5 @@
 def scan_to_a s
-  res = []
-  res = s.scan(/\w+/)
-  res
+  s.scan(/\w+/)
 end
 
 Given /^A bed with name "([^"]*)" and field state "([^"]*)"$/ do |name, field|

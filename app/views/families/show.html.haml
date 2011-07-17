@@ -11,8 +11,7 @@
   = @family.field_state
  %p
   %b Pflanzen:
-  - @family.plants.each do |plant|
-   = plant.name
+  = render :partial => 'plants/plant_year', :locals => { :plants => @family.plants, :with_header => true, :with_plant_name => true}
 
  = link_to 'Edit', edit_family_path(@family)
  |
