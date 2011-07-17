@@ -10,8 +10,8 @@ Given /^A bed with name "([^"]*)" and field state "([^"]*)"$/ do |name, field|
 end
 
 When /^I add "([^"]*)"$/ do |plant_names|
-  @plant_names = plant_names
-  add_plants_to_bed(@garden.name, @name, scan_to_a(plant_names))
+  @plant_names = scan_to_a(plant_names)
+  add_plants_to_bed(@garden.name, @name, @plant_names)
 
 end
 

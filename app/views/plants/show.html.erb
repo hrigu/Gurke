@@ -20,20 +20,24 @@
     <%= render_maturity_days(@plant.maturity_time_in_days)%>
   </p>
 
+
   <p>
     <b>Reifezeitungenauigkeit</b>
     <%= render_variability_in_percent  @plant.variability_in_percent%>
   </p>
+  <p>
+    <b>Jahr</b> <br/>
+     <%= render :partial => 'plant_year', :locals => { :plants => [@plant], :with_header => true, :with_plant_name => false}%>
+  </p>
+
 
   <% if(@plant.maturity_time_in_days) %>
     <h2>Erntezeit berechnen</h2>
 
 
-
 <div id="plant.calculate_harvest_time">
     <p>Aussaatzeit </p>
-  
-    
+
       <%= form_tag({:action => "calculate_harvest_time"}, {:method => "get"}) do %>
         <%= select :harvest_time_calculation, :seed_day, %w{Anfang Mitte Ende} ,{:selected => @selected_seed_day} %>
         <%= select :harvest_time_calculation, :seed_month, render_months(@plant.seed_months), {:selected => @selected_seed_month} %>

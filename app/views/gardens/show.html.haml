@@ -13,10 +13,10 @@
       %p
         = link_to bed.name, garden_bed_path(@garden, bed)
       %p Pflanzen:
-      %ul
+      %div
         - bed.plants.each do |plant|
-          %li= link_to plant, plant
-
+          %div
+            = link_to plant, plant
 %p{"id" => "new_bed_link"}
   = link_to "Neues Beet", new_garden_bed_path(@garden)
 

@@ -93,4 +93,12 @@ class PlantsHelperTest < ActiveSupport::TestCase
   test "render variability in percent for 0%" do
     assert_equal "0%", render_variability_in_percent(0)
   end
+
+  test "isSeed" do
+    p = Plant.new;
+    p.seed_from_month=3
+    p.seed_to_month=3
+    m = Month.find("März")
+    assert_equal "seedTime", is_seed_time(p, m)
+  end
 end

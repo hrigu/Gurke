@@ -4,22 +4,35 @@
   <tr>
     <th>Name</th>
     <th>Familie</th>
+    <th>Zeiten</th>
     <th>Anforderung:</th>
-    <th>Aussaatzeit</th>
     <th>Reifezeit</th>
   </tr>
 
+  <tr>
+    <td></td>
+    <td></td>
+    <td>
+      <div class="block row thead">
+        <% month.each do |m| %>
+            <div class="cell <%= m %>"><%= m.name.chars.first.capitalize %></div>
+        <% end %>
+      </div>
+    </td>
+    <td></td>
+    <td></td>
+
+  </tr>
+
+
 <% @plants.each do |plant| %>
-  <div id="plant.<%=to_html_tag plant.name %>">
   <tr>
     <td><%= link_to plant.name , plant%></td>
-    <td><%=  link_to  plant.family_name, plant.family    %>
-    </td>
+    <td><%= link_to  plant.family_name, plant.family %> </td>
+    <td> <%= render :partial => 'plant_year', :locals => { :plants => [plant], :with_header => false, :with_plant_name => false}%></td>
     <td><%= plant.energy %></td>
-    <td><%= render_seed_time(plant)%></td>
     <td><%= render_maturity_days(plant.maturity_time_in_days) %></td>
   </tr>
-  </div>
 <% end %>
 </table>
 

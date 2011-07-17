@@ -10,9 +10,7 @@
 
 <p>
   <b>Gewählte Pflanzen:</b>
-  <% @bed.plants.each do |plant| %>
-    <%= plant.name %>
-  <%  end %>
+  <%= render :partial => 'plants/plant_year', :locals => { :plants => @bed.plants, :with_header => true, :with_plant_name => true}%>
 </p>
 
 <%= link_to 'Edit', edit_garden_bed_path(@garden, @bed) %> |

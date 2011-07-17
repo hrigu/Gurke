@@ -1,0 +1,21 @@
+<% plants.each_index do |index|; plant = plants.fetch(index); %>
+    <% if with_header && index == 0 then %>
+        <div class="block row thead">
+            <% if with_plant_name then %>
+                <div class="row_name">&nbsp;</div>
+            <% end %>
+            <% month.each do |m| %>
+                <div class="cell <%= m %>"><%= m.name.chars.first.capitalize %></div>
+            <% end %>
+        </div>
+    <% end %>
+    <div id="<%= plant.name %>" class="block row plant">
+        <% if with_plant_name then %>
+            <div class="row_name"><%= plant.name %></div>
+        <% end %>
+        <% month.each do |m| %>
+            <%= render :partial => 'plants/plant_month', :locals => { :month => m, :plant => plant}%>
+        <% end %>
+    </div>
+<%  end %>
+

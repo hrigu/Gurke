@@ -1,13 +1,13 @@
 module PlantsHelper
 
   include ApplicationHelper
-  
-  MONTH = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+
+  MONTH = Month::MONTH
 
   def render_maturity_days(days)
     if (not days)
       unknown
-    elsif(days < 30)
+    elsif (days < 30)
       "#{days} Tag#{append_plural_e(days)}"
     else
       months =(days / 30).to_i
@@ -29,37 +29,53 @@ module PlantsHelper
 
 
   def month_from_rendered_seed_time(seed_time_string)
-    split =  seed_time_string.split(/\s+/)
-    month = split.last
-    MONTH.index(month) + 1
+    split = seed_time_string.split(/\s+/)
+    month_name = split.last
+    m = Month.find(month_name)
+    m.id if !m.nil?
+  end
+
+  def month
+    MONTH
   end
 
   def day_from_rendered_seed_time(seed_time_string)
-    split =  seed_time_string.split /\s+/
+    split = seed_time_string.split /\s+/
     day = split.first
-    if(day.to_i >0)
+    if (day.to_i >0)
       day.to_i
     else
       case day
-      when "Anfang" then 1
-      when "Mitte" then 15
-      when "Ende" then 30
-      else nil
+        when "Anfang" then
+          1
+        when "Mitte" then
+          15
+        when "Ende" then
+          30
+        else
+          nil
       end
     end
   end
+
+  # @return "seed"
+  def is_seed_time(plant, month)
+
+    plant.seed_from_month && plant.seed_to_month && plant.seed_from_month <= month.id && plant.seed_to_month >= month.id ? "seedTime": ""
+  end
+
   def nice_time(month, day)
-    if(month and day)
-      "#{nice_day_of_month_description(day)} #{MONTH[month-1]}"
-    elsif(month)
-      MONTH[month-1]
+    if (month and day)
+      "#{nice_day_of_month_description(day)} #{MONTH[month-1].name}"
+    elsif (month)
+      MONTH[month-1].name
     else
       unknown
     end
   end
 
   def nice_day_of_month_description(day)
-    if(day < 10)
+    if (day < 10)
       "Anfang"
     elsif (day <= 20)
       "Mitte"
@@ -74,7 +90,7 @@ module PlantsHelper
 
   private
   def append_plural_e(number)
-    if(number > 1)
+    if (number > 1)
       "e"
     else
       ""

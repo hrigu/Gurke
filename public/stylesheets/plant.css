@@ -1,0 +1,61 @@
+
+div.block{
+text-align:center;
+}
+
+div.row{
+width:auto;
+height:35px;
+}
+
+
+div.block .row_name{
+width:60px;
+float:left;
+}
+
+div.block .cell{
+width:25px;
+height:30px;
+float:left;
+margin-left: -1px;
+border-style: solid;
+border-color: black;
+border-width: thin;
+}
+
+div.plant .info{
+border-bottom-style: solid;
+border-color: black;
+border-width: thin;
+height:9px;
+
+}
+
+div.plant .last{
+height:10px;
+}
+
+
+div.plant .seedTime{
+background: yellow;
+}
+div.plant .plantTime{
+background: green;
+}
+div.plant .earnTime{
+background: red;
+}
+
+#bed{
+width:500px;
+height:300px;
+margin:20px;
+display:block;
+border-style: solid;
+border-color: black;
+border-width: thin;
+}
+div.drophover{
+background-color:yellow;
+}
