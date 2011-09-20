@@ -14,5 +14,6 @@
 </p>
 
 <%= link_to 'Edit', edit_garden_bed_path(@garden, @bed) %> |
+<%= link_to 'Pflanzen hinzufügen', add_plants_garden_bed_path(@garden, @bed) %> |
 <%= link_to 'Destroy', [@garden, @bed], :confirm => 'Are you sure?', :method => :delete %> |
 <%= link_to 'zurück zum Garten', @garden %>

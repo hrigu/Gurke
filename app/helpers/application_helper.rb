@@ -9,7 +9,6 @@ module ApplicationHelper
       replace_umlaute(s)
     else
       a = "string_is_nil"
-      puts a
       a
     end
 

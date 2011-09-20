@@ -4,7 +4,6 @@ class BasePage
   def initialize(app)
     @app = app
   end
-  #left
 
   def move_to_home
     click_link "home"

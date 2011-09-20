@@ -1,4 +1,4 @@
-<%= form_for [@garden, @bed] do |f| %>
+<%= form_for [@garden, @bed], :url => { :action => "update_add_plants"} do |f| %>
   <% if @bed.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bed.errors.count, "error") %> prohibited this bed from being saved:</h2>

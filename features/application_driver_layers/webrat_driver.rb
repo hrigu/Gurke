@@ -8,7 +8,7 @@ module WebratDriver
     new_family_page.create_new(family_name, energy_name, type_name)
   end
 
-  def page_should_contain(text_array)
+  def page_should_contain text_array
     content = gurke_mock.current_page.content
     text_array.each do |text|
       content.should contain text
@@ -99,13 +99,15 @@ module WebratDriver
   def add_plants_to_bed(garden_name, bed_name, plant_names)
     gardens_page = gurke_mock.current_page.move_to_gardens_page
     garden_page = gardens_page.move_to_detail_page(garden_name)
+    bed_page = garden_page.move_to_detail_page(bed_name)
+    bed_add_plant_page = bed_page.move_to_add_plants_page
     plant_names.each do |plant_name|
-      bed_page = garden_page.move_to_detail_page(bed_name)
-      bed_edit_page = bed_page.move_to_edit_page
-      garden_page = bed_edit_page.add_plant(plant_name)
-      garden_page.content.should contain plant_name
+      bed_add_plant_page = bed_add_plant_page.add_plant(plant_name)
     end
-
+    bed_page = bed_add_plant_page.move_to_bed_page
+    plant_names.each do |plant_name|
+      bed_page.content.should contain plant_name
+    end
   end
 
   private
@@ -131,25 +133,5 @@ module WebratDriver
     end
     @gurke_mock
   end
-
-#  def app
-#    begin
-#      puts "hHHHHHHHHHHHHHHHAAAAAAAAAAAAAALLLLLLLLLLLLLOOOOOOOOOOO"
-#      puts parse_caller(caller(2).first).inspect
-#    rescue Exception => e
-#      puts e.backtrace
-#    end
-#  end
-#
-#
-#  def parse_caller(at)
-#    if /^(.+?):(\d+)(?::in `(.*)')?/ =~ at
-#      file = Regexp.last_match[1]
-#      line = Regexp.last_match[2].to_i
-#      method = Regexp.last_match[3]
-#      [file, line, method]
-#    end
-#  end
-
 
 end

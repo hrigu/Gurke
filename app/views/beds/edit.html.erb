@@ -1,21 +1,5 @@
-<% title "Pflanzen hinzufügen" %>
+<% title "Beet editieren" %>
 
-<p>
-  <b>Name:</b>
-  <%= @bed.name%>
-</p>
-<p>
-  <b>Status:</b>
-  <%= @bed.field_state%>
-</p>
-<p>
-  <b>Gewählte Pflanzen:</b>
-  <% @bed.plants.each do |plant| %>
-    <%= plant.name %>
-  <%  end %>
-</p>
-
-<%= render 'form_add_plants' %>
-
-<%= link_to 'Show', [@garden, @bed] %> |
-<%= link_to 'Back', @garden %>
+<%= render 'form'%>
+<%= link_to 'Beet', [@garden, @bed] %> |
+<%= link_to 'zum Garten', @garden %>

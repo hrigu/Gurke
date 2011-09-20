@@ -92,12 +92,14 @@ class PageObjectsTest < Test::Unit::TestCase
     bed_page = garden_page.move_to_detail_page("bed_name")
     assert_page(BedPage, a, bed_page)
 
-    bed_edit_page = bed_page.move_to_edit_page
-    assert_page(BedEditPage, a, bed_edit_page)
+    bed_add_plants_page = bed_page.move_to_add_plants_page
+    assert_page(BedAddPlantsPage, a, bed_add_plants_page)
 
-    garden_page = bed_edit_page.add_plant("plant_name")
-    assert_page(GardenPage, a, garden_page)
+    bed_add_plants_page = bed_add_plants_page.add_plant("plant_name")
+    assert_page(BedAddPlantsPage, a, bed_add_plants_page)
 
+    bed_page = bed_add_plants_page.move_to_bed_page
+    assert_page(BedPage, a, bed_page)
   end
 
 

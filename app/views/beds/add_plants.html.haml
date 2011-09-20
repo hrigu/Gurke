@@ -1,0 +1,18 @@
+- title "Pflanzen zufügen"
+
+%p
+  %b Name:
+  = @bed.name
+%p
+%p
+  %b Status:
+  = @bed.field_state
+%p
+%p
+  %b Gewählte Pflanzen:
+  - @bed.plants.each do |plant|
+    = plant.name
+%p
+  = render 'form_add_plants'
+
+  = link_to "zurück", [@garden, @bed]
