@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(:version => 20110608150905) do
   create_table "families", :force => true do |t|
     t.string   "name"
     t.string   "energy"
+    t.string   "field_state"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "field_state"
   end
 
   create_table "gardens", :force => true do |t|
