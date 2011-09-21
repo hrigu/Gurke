@@ -1,0 +1,24 @@
+<% title "Task" %>
+
+<p>
+  <strong>Created At:</strong>
+  <%= @task.created_at %>
+</p>
+<p>
+  <strong>Done At:</strong>
+  <%= @task.done_at %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+<p>
+  <strong>Body:</strong>
+  <%= @task.body %>
+</p>
+
+<p>
+  <%= link_to "Edit", [@garden, @task] %> |
+  <%= link_to "Destroy", [@garden, @task], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", garden_tasks_path %>
+</p>
