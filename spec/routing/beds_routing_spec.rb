@@ -1,35 +1,45 @@
 require "spec_helper"
 
+
 describe BedsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/beds").should route_to("beds#index")
+      get("/gardens/1/beds").should route_to({:controller => "beds", :garden_id => "1", :action => "index"})
     end
 
     it "routes to #new" do
-      get("/beds/new").should route_to("beds#new")
+      get("/gardens/1/beds/new").should route_to(route_signatur(:action => "new"))
     end
 
     it "routes to #show" do
-      get("/beds/1").should route_to("beds#show", :id => "1")
+      get("/gardens/1/beds/1").should route_to route_signatur (:action => "show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/beds/1/edit").should route_to("beds#edit", :id => "1")
+      get("/gardens/1/beds/1/edit").should route_to route_signatur (:action => "edit", :id => "1")
     end
 
     it "routes to #create" do
-      post("/beds").should route_to("beds#create")
+      post("/gardens/1/beds").should route_to route_signatur(:action => "create")
     end
 
     it "routes to #update" do
-      put("/beds/1").should route_to("beds#update", :id => "1")
+      put("/gardens/1/beds/1").should route_to route_signatur (:action => "update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/beds/1").should route_to("beds#destroy", :id => "1")
+      delete("/gardens/1/beds/1").should route_to route_signatur (:action => "destroy", :id => "1")
     end
 
   end
+end
+
+:private
+def route_signatur(other_values = nil)
+  signatur = {:controller => "beds", :garden_id => "1"}
+  if other_values
+    signatur.merge! other_values
+  end
+  signatur
 end

@@ -24,7 +24,7 @@ describe BedsController do
   # Bed. As you add validations to Bed, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => "name"}
   end
 
   describe "GET index" do

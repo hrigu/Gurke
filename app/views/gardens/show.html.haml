@@ -17,8 +17,19 @@
         - bed.plants.each do |plant|
           %div
             = link_to plant, plant
+
+%p
+  %strong Tasks:
+  - @garden.tasks.each do |task|
+    %p
+      = task.title
+
+
 %p{"id" => "new_bed_link"}
   = link_to "Neues Beet", new_garden_bed_path(@garden)
+
+%p{"id" => "new_task_link"}
+  = link_to "Neuer Task", new_garden_task_path(@garden)
 
 %p
   = link_to "Edit", edit_garden_path(@garden)
