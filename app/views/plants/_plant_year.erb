@@ -11,7 +11,7 @@
     <% end %>
     <div id="<%= plant.name %>" class="block row plant">
         <% if with_plant_name then %>
-            <div class="row_name"><%= plant.name %></div>
+            <div class="row_name"><%= link_to plant, plant %></div>
         <% end %>
         <% month.each do |m| %>
             <%= render :partial => 'plants/plant_month', :locals => { :month => m, :plant => plant}%>

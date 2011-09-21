@@ -1,0 +1,20 @@
+<%= form_for [@garden, @task] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :created_at %><br />
+    <%= f.text_field :created_at %>
+  </p>
+  <p>
+    <%= f.label :done_at %><br />
+    <%= f.text_field :done_at %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_field :body %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

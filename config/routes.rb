@@ -1,5 +1,7 @@
 Gurke::Application.routes.draw do
 
+
+
   match 'account/edit' => 'accounts#edit', :as => :edit_current_account
 
   match 'signup' => 'accounts#new', :as => :signup
@@ -13,6 +15,7 @@ Gurke::Application.routes.draw do
       get :add_plants, :on => :member
       put :update_add_plants, :on => :member
     end
+    resources :tasks
   end
 
   resources :sessions
