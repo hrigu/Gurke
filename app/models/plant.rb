@@ -1,3 +1,4 @@
+# encoding: utf-8
 class   Plant < ActiveRecord::Base
   belongs_to :family
   has_many :plants_beds

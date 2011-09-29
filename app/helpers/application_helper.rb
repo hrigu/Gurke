@@ -1,4 +1,4 @@
-
+# encoding: utf-8
 
 module ApplicationHelper
  MONTH = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']

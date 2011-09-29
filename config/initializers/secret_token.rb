@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Gurke::Application.config.secret_token = '4b88c64a9ff285561384c4523fda008185dc74c909b178ed38ee349356668ba41c838f63610d95b4c8f7149b4bf0d2136f33dbd3c8c077a9a6b0b5fd5ccd94cb'
+Gurke::Application.config.secret_token = '6cd63cca28d2ea4791abde2165493e650ceecb74046a3209d1445e31011b5f1c5e85569d9e1bb4ebffa809ef5ca95ec5909ddedde4a847e57f60e8736e34d0b5'

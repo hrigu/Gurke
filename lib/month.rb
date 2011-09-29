@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Month
   attr_reader :name, :id, :abbrev
   def initialize name, id, abbrev
