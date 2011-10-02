@@ -5,7 +5,7 @@ describe BedsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/gardens/1/beds").should route_to({:controller => "beds", :garden_id => "1", :action => "index"})
+      get("/gardens/1/beds").should route_to(route_signatur(:action => "index"))
     end
 
     it "routes to #new" do
@@ -13,11 +13,11 @@ describe BedsController do
     end
 
     it "routes to #show" do
-      get("/gardens/1/beds/1").should route_to route_signatur (:action => "show", :id => "1")
+      get("/gardens/1/beds/1").should route_to route_signatur(:action => "show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/gardens/1/beds/1/edit").should route_to route_signatur (:action => "edit", :id => "1")
+      get("/gardens/1/beds/1/edit").should route_to route_signatur(:action => "edit", :id => "1")
     end
 
     it "routes to #create" do
@@ -25,11 +25,15 @@ describe BedsController do
     end
 
     it "routes to #update" do
-      put("/gardens/1/beds/1").should route_to route_signatur (:action => "update", :id => "1")
+      put("/gardens/1/beds/1").should route_to route_signatur(:action => "update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/gardens/1/beds/1").should route_to route_signatur (:action => "destroy", :id => "1")
+      delete("/gardens/1/beds/1").should route_to route_signatur(:action => "destroy", :id => "1")
+    end
+
+    it "routes to  #update_add_plants" do
+      put("/gardens/1/beds/1/update_add_plants").should route_to route_signatur(action: "update_add_plants", id: "1")
     end
 
   end
