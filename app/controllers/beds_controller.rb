@@ -36,16 +36,15 @@ class BedsController < ApplicationController
   end
 
 
-
-  def add_plants
-    @possible_plants = @bed.possible_plants.collect{|plant| [plant.name, plant.id]}
-  end
-
   def update_add_plants
     add_selected_plants()
     #redirect_to([@garden, @bed], :notice => 'plant was added')
     @possible_plants = @bed.possible_plants.collect{|plant| [plant.name, plant.id]}
     render :action => "add_plants"
+  end
+
+  def add_plants
+    @possible_plants = @bed.possible_plants.collect{|plant| [plant.name, plant.id]}
   end
 
   def destroy

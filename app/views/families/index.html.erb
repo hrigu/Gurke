@@ -3,9 +3,7 @@
   <tr>
     <th>Name</th>
     <th>Energy</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Field</th>
   </tr>
 
   <% @families.each do |family| %>
@@ -13,6 +11,7 @@
       <tr>
         <td><%= link_to family.name, family %></td>
         <td><%= family.energy %></td>
+        <td><%= family.field_state %></td>
       </tr>
     </div>
   <% end %>
