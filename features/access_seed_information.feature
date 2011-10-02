@@ -5,10 +5,11 @@ Feature: Access seed information of a plant
 
 
   Scenario Outline: Display seed information on plant details page
-    Given the plant "<plant>" is already known
-    When I display the details of "<plant>"
-    Then the details page shows "<seed_from>", "<seed_to>", "<maturation_time>" and average "<variation>"
+    Given the plant with name "<name>" and family "<family>"
+    When I go to the "plant" page for "<name>"
+    #When I display the details of "<name>"
+    Then the details page shows "<name>", "<family>", "<seed_from>", "<seed_to>", "<maturation_time>" and average "<variation>"
 
-    Scenarios:
-      | plant  | seed_from    | seed_to   | maturation_time | variation |
-      | Rüebli | Anfang April | Ende Juni | 3 Monate        | 10%       |
+  Scenarios:
+    | name   | family   | seed_from    | seed_to   | maturation_time | variation |
+    | Rüebli | Wurzel | Anfang April | Ende Juni | 3 Monate        | 10%       |

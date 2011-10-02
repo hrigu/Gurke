@@ -1,7 +1,7 @@
 class FamiliesPage < BasePage
 
   def move_to_new_page
-    click_link "new"
+    click_link "New Family"
     next_page(:FamilyNewPage)
   end
 

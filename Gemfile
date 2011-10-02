@@ -31,16 +31,22 @@ group :test do
   gem 'rails3-generators' #mainly for factory_girl & simple_form at this point
   gem 'factory_girl_rails'
   gem 'cucumber-rails'
+  gem 'capybara'
   gem 'mocha'
 
-  gem 'webrat'
+  #gem 'webrat'
   #generators, for examples for authentications
-  gem 'nifty-generators'
+  #gem 'nifty-generators'
 
 end
 
 #to enable the rake tasks, rspec-rails must be in the development group: see https://www.relishapp.com/rspec/rspec-rails and https://github.com/rspec/rspec-rails/issues/438
 group :test, :development do
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug-base19x'
+# gem 'ruby-debug-ide19'
+
   gem 'rspec-rails', "~> 2.4"
   gem 'rcov'
 end
@@ -55,10 +61,6 @@ gem "RedCloth"
 
 gem "ci_reporter"
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-# gem 'ruby-debug-base19x'
-# gem 'ruby-debug-ide19'
 
 # Bundle the extra gems:
 #gem 'sqlite3-ruby', :require => 'sqlite3'

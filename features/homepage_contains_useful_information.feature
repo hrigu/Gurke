@@ -1,3 +1,4 @@
+
 Feature: Homepage contains usefull information
   As an logged in user
   I want be able to see the important information on the home page

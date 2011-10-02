@@ -5,16 +5,16 @@ def scan_to_a s
   res
 end
 
-Given /^A "([^"]*)" name$/ do |plant_name|
-  @plant = Plant.find_by_name(plant_name)
+Then /^The plant name is "([^"]*)"$/ do |plant_name|
+  text = page.should have_css( "#plant_#{to_html_tag plant_name}" )
+  puts text
+  page.should have_content plant_name
 end
 
 Then /^The family name is "([^"]*)"$/ do |family_name|
-  family_name.should == @plant.family.name
+  page.should have_content family_name
 end
 
 Then /^the energy need is "([^"]*)"$/ do |energy|
-    energy.should == @plant.energy
+  page.should have_content energy
 end
-
- 

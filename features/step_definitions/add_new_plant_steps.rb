@@ -1,5 +1,6 @@
 
 Given /^the family "([^"]*)" exisits$/ do |family_name|
+  family = Factory.create(:family, name: family_name)
   family = move_to_family_page(family_name)
 end
 

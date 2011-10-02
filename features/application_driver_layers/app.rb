@@ -21,14 +21,13 @@ class App
     page.visit_me
   end
 
-  def find_page(page_name, content = nil)
-    page = @pages[page_name]
-    if (page.nil?)
-      page = eval("#{page_name}.new(self)")
-      @pages[page_name] = page
+  def find_page(page_name)
+    requested_page = @pages[page_name]
+    if (requested_page.nil?)
+      requested_page = eval("#{page_name}.new(self)")
+      @pages[page_name] = requested_page
     end
-    page.content = content
-    @current_page = page
+    @current_page = requested_page
     @visited_pages << @current_page
     @current_page
   end

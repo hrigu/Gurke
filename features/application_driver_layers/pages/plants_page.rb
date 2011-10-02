@@ -1,7 +1,7 @@
 class PlantsPage < BasePage
 
   def move_to_new_page
-    click_link "new"
+    click_link "New Plant"
     next_page(:PlantNewPage)
   end
 

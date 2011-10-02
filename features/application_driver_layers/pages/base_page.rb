@@ -1,5 +1,5 @@
 class BasePage
-  attr_accessor :content
+  #attr_accessor :content
 
   def initialize(app)
     @app = app
@@ -51,7 +51,7 @@ class BasePage
   end
 
   def next_page(page_class_sym)
-    @app.find_page(page_class_sym, response)
+    @app.find_page(page_class_sym)
   end
 
 end

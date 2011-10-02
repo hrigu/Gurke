@@ -4,12 +4,12 @@ end
 
 
 When /^I sign up$/ do
-  @response = signup(@name, @pwd, @email)
+  signup(@name, @pwd, @email)
 end
 
 Then /^I have an account on gurke$/ do
-  @response.should have_selector("div[id=\"logged_in_as_#{@name}\"]")
-  @response.should have_selector('div[id="flash_notice"]')
+  page.should have_selector("div[id=\"logged_in_as_#{@name}\"]")
+  page.should have_selector('div[id="flash_notice"]')
 end
 
 
@@ -27,7 +27,7 @@ end
 
 
 Then /^he is logged in$/ do
-  response.should have_selector("div[id=\"logged_in_as_#{@account.username}\"]")
+  page.should have_selector("div[id=\"logged_in_as_#{@account.username}\"]")
 end
 
 When /^fritz tries to log in with password "([^"]*)"$/ do |pwd|
@@ -35,7 +35,7 @@ When /^fritz tries to log in with password "([^"]*)"$/ do |pwd|
 end
 
 Then /^he isn't' logged in$/ do
-  response.should have_selector("div[id=\"not_logged_in\"]")
+  page.should have_selector("div[id=\"not_logged_in\"]")
 end
 
 

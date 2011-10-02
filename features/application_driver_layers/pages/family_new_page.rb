@@ -2,8 +2,8 @@ class FamilyNewPage < BasePage
 
   def create_new family, energy, family_field_state
     fill_in "Name", :with => family
-    fill_in "Energy", :with => energy
-    fill_in "family_field_state", :with => family_field_state
+    select energy, :from => "family_energy"
+    select family_field_state, :from => "family_field_state"
     click_button "Create Family"
     next_page(:FamilyPage)
   end

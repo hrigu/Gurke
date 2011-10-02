@@ -1,7 +1,5 @@
-Given /^the plant "([^"]*)" is already known$/ do |original_name|
-  @original_plant_name = original_name
-  move_to_plant_page original_name
-  page_should_contain [original_name]
+Given /^The family "([^"]*)"$/ do |family_name|
+  Factory.create(:family, name: family_name)
 end
 
 When /^I rename the plant to "([^"]*)"$/ do |new_name|

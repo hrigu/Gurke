@@ -4,22 +4,14 @@ def scan_to_a s
   res
 end
 
-Given /^a "([^"]*)" name$/ do |family_name|
-  @family = Family.find_by_name(family_name)
+Given /^a "([^"]*)" with the "([^"]*)"$/ do |family_name, plant_names|
+  family = Factory.create(:family, name: family_name)
+  (scan_to_a(plant_names)).each do |plant_name|
+    Factory.create(:plant, name: plant_name, family: family)
+  end
 end
 
-Then /^the plants are "([^"]*)"$/ do |merged_plants|
-  # Split the serialized plants and check each for inclusion in family
-  (scan_to_a merged_plants).each do |split_plant|
-    # Must find each of the plants in the family
-    found = false
-    # Check each plant of the family
-    @family.plants.each do |family_plant|
-      if family_plant.name eq split_plant then
-        found = true
-      end
-    end
-    # If no match was found, abort
-    found.should == true
-  end
+
+Then /^the listed plants are "([^"]*)"$/ do |plant_names|
+  page_should_contain scan_to_a plant_names
 end

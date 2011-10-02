@@ -4,8 +4,9 @@ Feature: show plants of a family
   Gurke shows me all the plants of a family as specified
 
   Scenario Outline: looking for the plants belonging to the same family x
-    Given a "<family>" name
-    Then the plants are "<plants>"
+    Given a "<family>" with the "<plants>"
+    When I go to the "family" page for "<family>"
+    Then the listed plants are "<plants>"
 
     Scenarios:
       | family              | plants        |

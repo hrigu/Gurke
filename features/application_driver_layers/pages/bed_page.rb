@@ -1,3 +1,4 @@
+# encoding: utf-8
 class BedPage < BasePage
   def move_to_edit_page
     click_link "Edit"

@@ -1,11 +1,11 @@
 Feature: Manage families
   As an admin user
-  I want to manage families
+  I want to manage plant families
   In order to increase the known families
 
   Scenario: Add a new family
     Given I am logged in as admin user
-    When I create a a family "Doldengewächse" that is "schwachzehrend" and of type "C"
+    When I create a a family "Doldengewächse" that is "Schwachzehrer" and of type "C"
     Then the newly created family should be created
 
   Scenario: Rename a family

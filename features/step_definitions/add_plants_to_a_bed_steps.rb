@@ -9,6 +9,11 @@ end
 
 When /^I add "([^"]*)"$/ do |plant_names|
   @plant_names = scan_to_a(plant_names)
+
+  family = Factory.create(:family, name: "family_name")
+  @plant_names.each do |plant_name|
+    plant = Factory.create(:plant, name: plant_name, family: family)
+  end
   add_plants_to_bed(@garden.name, @name, @plant_names)
 
 end

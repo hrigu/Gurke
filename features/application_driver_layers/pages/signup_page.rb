@@ -7,7 +7,7 @@ class SignupPage < BasePage
     fill_in "account_email", :with => email
     fill_in "account_password", :with => pwd
     fill_in "account_password_confirmation", :with => pwd
-    click_button "account_submit"
+    click_button "Sign up"
     next_page(:HomePage)
   end
 
