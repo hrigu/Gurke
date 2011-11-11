@@ -3,11 +3,4 @@
 
 //= require jquery
 //= require jquery-ui
-
-
-//for the beds...
-$(document).ready(function() {
-  $(".draggable").draggable();
-  $(".resizable").resizable();
-});
-
+//= require_tree

@@ -1,0 +1,8 @@
+%div.draggable.resizable{id: "bed_box.#{to_html_tag bed.name}", style: build_style(bed)}
+  %p
+    = link_to bed.name, garden_bed_path(@garden, bed)
+  %p Pflanzen:
+  %div
+    - bed.plants.each do |plant|
+      %div
+        = link_to plant, plant
