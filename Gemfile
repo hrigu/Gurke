@@ -47,6 +47,7 @@ group :test, :development do
 # gem 'ruby-debug-base19x'
 # gem 'ruby-debug-ide19'
 
+  gem 'spork', '~> 0.9.0.rc'
   gem 'rspec-rails', "~> 2.4"
   gem 'rcov'
 end
