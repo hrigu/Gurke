@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-source "http://gems.github.com"
+#source "http://gems.github.com"
 
 
 gem 'rails', '3.1.0'
@@ -47,7 +47,7 @@ group :test, :development do
 # gem 'ruby-debug-base19x'
 # gem 'ruby-debug-ide19'
 
-  gem 'spork', '~> 0.9.0.rc'
+  #gem 'spork', '~> 0.9.0.rc'
   gem 'rspec-rails', "~> 2.4"
   gem 'rcov'
 end
@@ -58,7 +58,7 @@ gem 'therubyracer'
 
 
 # for generate doc
-gem "RedCloth"
+#gem "RedCloth"
 
 gem "ci_reporter"
 
