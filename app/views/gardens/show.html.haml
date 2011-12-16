@@ -9,7 +9,7 @@
   = @garden.place
 %p
   %strong Beete:
-  #garden
+  #garden{garden_id: @garden.id}
     - @garden.beds.each do |bed|
       = render partial: 'bed', locals: {bed: bed}
 %p

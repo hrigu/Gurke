@@ -9,7 +9,7 @@ Gurke::Application.routes.draw do
 
   resources :gardens do
     resources :beds do
-      put :move_bed, :on => :member
+      post :move_bed, :on => :member
       get :add_plants, :on => :member
       put :update_add_plants, :on => :member
     end

@@ -7,7 +7,6 @@ describe BedsController do
     @account = FactoryGirl.create(:account)
 
     @controller.stub(:current_account) { @account }
-
     # Eigentlich sollte dieser stub nicht nötig sein, da current_account ein alias von current_user ist. Aber anscheinend wird jene Methode
     # in diesem Fall nicht gestubbed.. Darum noch dieser stub
     @controller.stub(:current_user) { @account }

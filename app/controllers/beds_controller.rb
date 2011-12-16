@@ -63,6 +63,7 @@ class BedsController < ApplicationController
     @bed.pos_left = position[:left]
     @bed.pos_top = position[:top]
     @bed.save
+    render :nothing => true
   end
 
   private
