@@ -58,7 +58,11 @@ class BedsController < ApplicationController
   end
 
   def move_bed
-    redirect_to(@garden)
+    position = params[:position]
+    id = params[:id]
+    @bed.pos_left = position[:left]
+    @bed.pos_top = position[:top]
+    @bed.save
   end
 
   private
