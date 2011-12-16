@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
+    #default render  new
   end
 
   def create

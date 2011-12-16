@@ -4,8 +4,12 @@ class BedsController < ApplicationController
   load_and_authorize_resource :bed, :through => :garden
 
   def show
+    puts "show"
   end
 
+  def authorize! one, two
+    super one, two
+  end
   # called before render the form
   def new
     @possible_states = init_possible_states
@@ -48,7 +52,12 @@ class BedsController < ApplicationController
   end
 
   def destroy
+    puts "destroy"
     @bed.destroy
+    redirect_to(@garden)
+  end
+
+  def move_bed
     redirect_to(@garden)
   end
 

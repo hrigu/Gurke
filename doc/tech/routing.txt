@@ -22,10 +22,10 @@ links:
 beds_path => garden_beds_path
     edit
         alt: <%= link_to 'Edit', edit_bed_path(@bed, :garden => @garden) %>
-	neu: <%= link_to 'Edit', edit_garden_bed_path(@garden, @bed) %>
+	    neu: <%= link_to 'Edit', edit_garden_bed_path(@garden, @bed) %>
     Destroy
         alt: <%= link_to 'Destroy', bed_path(@bed, :garden => @garden)
-	neu: = link_to "Destroy", [@garden, @bed], :method
+	    neu: = link_to "Destroy", [@garden, @bed], :method
     Show
         alt:<%= link_to 'Show', @bed %> |
         neu: <%= link_to 'Show', [@garden, @bed] %> |

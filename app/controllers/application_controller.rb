@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
     flash[:error] = "Access denied."
     redirect_to root_url #better stay on current page
   end
+
+  ##
+  # This method is the horse of rails
+  ##
+  def render(*args)
+    super *args
+  end
+
 end

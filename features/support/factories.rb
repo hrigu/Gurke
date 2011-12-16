@@ -5,7 +5,7 @@ FactoryGirl.define do
     username "fritz"
     password_confirmation { |u| u.password }
     admin false
-    email "foo@example.com"
+    email "fritz@example.com"
   end
 
   factory :family do

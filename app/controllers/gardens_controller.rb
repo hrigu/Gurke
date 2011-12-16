@@ -4,6 +4,10 @@ class GardensController < ApplicationController
 
   #show, new, edit defined by views
 
+  def show
+    puts "hallo: GardensController#show"
+  end
+
   def index
     #because @gardens is defined here, the load_and_authrize filter doesn't load gardens
     @gardens = current_account.gardens

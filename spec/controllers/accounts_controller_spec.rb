@@ -2,22 +2,26 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe AccountsController do
 #  fixtures :all
-  render_views
+  #render_views
 
-  it "new action should render new template" do
+  it "can offer a new account" do
     get :new
+    response.should be_success
     response.should render_template(:new)
+
   end
 
   it "create action should render new template when model is invalid" do
+    account = FactoryGirl.attributes_for(:account)
     Account.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, account
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    Account.any_instance.stubs(:valid?).returns(true)
-    post :create
+    account = FactoryGirl.attributes_for(:account)
+
+    post :create, account: account
     response.should redirect_to(root_url)
     session['account_id'].should == assigns['account'].id
   end
@@ -28,7 +32,7 @@ describe AccountsController do
   end
 
   it "edit action should render edit template" do
-    @controller.stubs(:current_account).returns(Account.first)
+    @controller.stubs(:current_account).returns(FactoryGirl.create(:account))
     get :edit, :id => "ignored"
     response.should render_template(:edit)
   end
@@ -39,15 +43,15 @@ describe AccountsController do
   end
 
   it "update action should render edit template when account is invalid" do
-    @controller.stubs(:current_account).returns(Account.first)
-    Account.any_instance.stubs(:valid?).returns(false)
+    @controller.stub(:current_account).and_return(FactoryGirl.create(:account))
+    Account.any_instance.stub(:valid?).and_return(false)
     put :update, :id => "ignored"
     response.should render_template(:edit)
   end
 
   it "update action should redirect when account is valid" do
-    @controller.stubs(:current_account).returns(Account.first)
-    Account.any_instance.stubs(:valid?).returns(true)
+    @controller.stub(:current_account) {FactoryGirl.create(:account)}
+    Account.any_instance.stub(:valid?) {true}
     put :update, :id => "ignored"
     response.should redirect_to(root_url)
   end
