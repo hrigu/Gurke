@@ -26,9 +26,8 @@ describe BedsController do
 
   describe "PUT move_beds" do
     it "success" do
-      put :move_bed, garden_id: @garden.id.to_s, id: @bed.id.to_s
+      post :move_bed, garden_id: @garden.id.to_s, id: @bed.id.to_s, position: {right: 10, left: 33}
       assigns(:bed).should eq(@bed)
-      response.should be_redirect #why?
     end
   end
 
