@@ -59,9 +59,17 @@ class BedsController < ApplicationController
 
   def move_bed
     position = params[:position]
+    sizes = params[:sizes]
+
     id = params[:id]
-    @bed.pos_left = position[:left]
-    @bed.pos_top = position[:top]
+    if position
+      @bed.pos_left = position[:left]
+      @bed.pos_top = position[:top]
+    end
+    if sizes
+      @bed.width = sizes[:width]
+      @bed.height = sizes[:height]
+    end
     @bed.save
     render :nothing => true
   end

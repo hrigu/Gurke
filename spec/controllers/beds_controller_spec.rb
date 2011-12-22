@@ -25,9 +25,19 @@ describe BedsController do
 
 
   describe "PUT move_beds" do
-    it "success" do
-      post :move_bed, garden_id: @garden.id.to_s, id: @bed.id.to_s, position: {right: 10, left: 33}
-      assigns(:bed).should eq(@bed)
+    it "can save the new position" do
+      new_pos = {top: 10, left: 33}
+      post :move_bed, garden_id: @garden.id.to_s, id: @bed.id.to_s, position: new_pos
+      saved_bed = assigns(:bed)
+      saved_bed.pos_top.should == new_pos[:top]
+      saved_bed.pos_left.should == new_pos[:left]
+    end
+    it "can save the new size" do
+      new_sizes = {width: 10, height: 33}
+      post :move_bed, garden_id: @garden.id.to_s, id: @bed.id.to_s, sizes: new_sizes
+      saved_bed = assigns(:bed)
+      saved_bed.width.should == new_sizes[:width]
+      saved_bed.height.should == new_sizes[:height]
     end
   end
 

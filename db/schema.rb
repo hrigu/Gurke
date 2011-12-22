@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20111111073031) do
     t.string   "name"
     t.integer  "garden_id"
     t.integer  "width"
-    t.integer  "heigt"
+    t.integer  "height"
     t.integer  "pos_left"
     t.integer  "pos_top"
   end
