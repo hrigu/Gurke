@@ -5,7 +5,7 @@ describe "Plants" do
     it "plants_path returns ok" do
       get plants_path
       response.status.should be(200)
-      response.body.should contain "Pflanzen"
+      response.body.should include "Pflanzen"
     end
   end
 end

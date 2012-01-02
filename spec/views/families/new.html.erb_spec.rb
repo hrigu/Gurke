@@ -6,6 +6,9 @@ describe "families/new.html.erb" do
       :name => "MyString",
       :energy => "MyString"
     ).as_new_record)
+
+    assign(:possible_energies, ["Starkzehrer", "Schwachzehrer"])
+    assign(:possible_states, ["A", "B"])
   end
 
   it "renders new family form" do
@@ -14,7 +17,7 @@ describe "families/new.html.erb" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => families_path, :method => "post" do
       assert_select "input#family_name", :name => "family[name]"
-      assert_select "input#family_energy", :name => "family[energy]"
+      assert_select "select#family_energy", :name => "family[energy]"
     end
   end
 end

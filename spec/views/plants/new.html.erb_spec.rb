@@ -5,6 +5,7 @@ describe "plants/new.html.erb" do
     assign(:plant, stub_model(Plant,
       :name => "MyString"
     ).as_new_record)
+    assign(:families, [stub_model(Family)])
   end
 
   it "renders new plant form" do

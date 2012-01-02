@@ -5,6 +5,7 @@ describe "plants/edit.html.erb" do
     @plant = assign(:plant, stub_model(Plant,
       :name => "MyString"
     ))
+    assign(:families, [stub_model(Family)])
   end
 
   it "renders the edit plant form" do

@@ -22,7 +22,7 @@ describe GardensController do
     before :each do
       @account = double "account"
       @account.stub(:id){1}
-      @controller.stub(:current_account) { puts "hallo!"; @account }
+      @controller.stub(:current_account) {@account }
 
     end
 
